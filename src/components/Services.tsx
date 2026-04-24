@@ -285,7 +285,7 @@ export default function Services() {
   return (
     <section ref={containerRef} id="services" className="relative min-h-[250vh] bg-white">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden relative">
-        <div className="container mx-auto px-6 h-full flex items-center">
+        <div className="container mx-auto px-6 md:px-12 h-full flex items-center">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center w-full">
             
             {/* Left: Sticky Info */}

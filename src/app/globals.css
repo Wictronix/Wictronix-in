@@ -31,13 +31,14 @@
 
 @layer base {
   html {
-    overflow-y: overlay;
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
   }
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-accent/20 selection:text-accent relative;
+    @apply bg-background text-foreground antialiased selection:bg-accent/20 selection:text-accent relative px-0;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
   h1, h2, h3, h4, .font-display {
@@ -67,9 +68,9 @@
   }
 }
 
-/* Custom Scrollbar - Ultra-Minimal 2px Blue Strip */
+/* Hide Native Scrollbar */
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 0px;
 }
 
 ::-webkit-scrollbar-track {
@@ -87,6 +88,6 @@
 
 /* Firefox Support */
 * {
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: #0052FF transparent;
 }

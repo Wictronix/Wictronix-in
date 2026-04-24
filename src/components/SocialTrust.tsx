@@ -109,7 +109,7 @@ function Counter({ value, suffix, label, index }: { value: number; suffix: strin
 export default function SocialTrust() {
   return (
     <section className="py-20 bg-white border-t border-border/50">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 md:px-12">
         
         {/* Header Area */}
         <div className="max-w-xl mb-16 mx-auto text-center">

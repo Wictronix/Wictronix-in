@@ -49,7 +49,7 @@ export default function Philosophy() {
   return (
     <section ref={containerRef} id="philosophy" className="relative min-h-[150vh] bg-white">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden relative">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             {/* Left: Title Section */}
             <motion.div 

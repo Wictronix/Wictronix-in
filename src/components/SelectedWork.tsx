@@ -51,7 +51,7 @@ export default function SelectedWork() {
 
   return (
     <section ref={containerRef} id="work" className="relative py-32 bg-white min-h-[120vh]">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
           <motion.div 
             style={{ scale: headerScale, y: headerY, opacity: headerOpacity }}
