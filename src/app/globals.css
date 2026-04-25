@@ -68,26 +68,28 @@
   }
 }
 
-/* Hide Native Scrollbar */
-::-webkit-scrollbar {
-  width: 0px;
-}
+/* Hide Native Scrollbar on Desktop only */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #0052FF;
+    border-radius: 0;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0041CC;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent !important;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #0052FF;
-  border-radius: 0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #0041CC;
-}
-
-/* Firefox Support */
-* {
-  scrollbar-width: none;
-  scrollbar-color: #0052FF transparent;
+  /* Firefox Support */
+  * {
+    scrollbar-width: none;
+    scrollbar-color: #0052FF transparent;
+  }
 }

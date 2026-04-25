@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent mb-8">Navigation</h4>
+            <h4 className="text-[10px] font-bold tracking-[0.2em] text-accent mb-8">Navigation</h4>
             <ul className="space-y-4 text-base font-display font-bold">
               {["Services", "Work", "Philosophy", "Process"].map(link => (
                 <li key={link}>
@@ -60,7 +60,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent mb-8">Contact</h4>
+            <h4 className="text-[10px] font-bold tracking-[0.2em] text-accent mb-8">Contact</h4>
             <ul className="space-y-6">
               <li className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-accent" />
@@ -74,9 +74,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold tracking-[0.3em] uppercase text-background/30">
+        <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-xs font-bold tracking-[0.1em] text-background/50 text-center md:text-left">
           <p>© 2024 WictroniX. No placeholders. Just execution.</p>
-          <div className="flex space-x-10">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10">
             <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>

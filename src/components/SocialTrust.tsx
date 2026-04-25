@@ -18,9 +18,9 @@ const logos = [
 ];
 
 const metrics = [
-  { value: 50, suffix: "+", label: "Projects Shipped" },
+  { value: 50, suffix: "+", label: "Projects shipped" },
   { value: 4, suffix: "", label: "Countries" },
-  { value: 2, suffix: "Cr+", label: "Revenue Generated" },
+  { value: 2, suffix: "Cr+", label: "Revenue generated" },
   { value: 12, suffix: "+", label: "Industries" },
 ];
 
@@ -29,21 +29,21 @@ const testimonials = [
     quote: "WictroniX generated ₹40L in pipeline within 60 days. They think like co-founders.",
     author: "Rahul Sharma",
     role: "CEO, TechFlow",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+    image: "/images/testimonials/rahul.jpg",
     tags: ["Tech", "Marketing"],
   },
   {
     quote: "Speed is unmatched. MVP live and processing payments in under three weeks.",
     author: "Sarah Jenkins",
     role: "Founder, Bloomly",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+    image: "/images/testimonials/sarah.jpg",
     tags: ["Product", "Strategy"],
   },
   {
     quote: "Precision-engineered solutions that actually scale. The best tech partner we've had.",
     author: "James Chen",
     role: "CTO, Nexus",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
+    image: "/images/testimonials/james.jpg",
     tags: ["Engineering", "SaaS"],
   },
 ];
@@ -88,7 +88,7 @@ function Counter({ value, suffix, label, index }: { value: number; suffix: strin
       transition={{ delay: index * 0.1 }}
       className="flex flex-col group cursor-default"
     >
-      <span className="text-accent text-[8px] font-mono font-bold tracking-[0.4em] uppercase mb-4 opacity-40 group-hover:opacity-100 transition-opacity">
+      <span className="text-accent text-[8px] font-mono font-bold tracking-[0.2em] mb-4 opacity-40 group-hover:opacity-100 transition-opacity">
         Metric_0{index + 1}
       </span>
       <div className="flex items-baseline space-x-1 mb-2">
@@ -99,7 +99,7 @@ function Counter({ value, suffix, label, index }: { value: number; suffix: strin
           {suffix}
         </span>
       </div>
-      <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-muted-foreground mt-2 border-t border-border/50 pt-4 w-fit pr-8 group-hover:border-accent group-hover:text-foreground transition-all duration-500">
+      <div className="text-[10px] tracking-[0.2em] font-bold text-muted-foreground mt-2 border-t border-border/50 pt-4 w-fit pr-8 group-hover:border-accent group-hover:text-foreground transition-all duration-500">
         {label}
       </div>
     </motion.div>
@@ -117,7 +117,7 @@ export default function SocialTrust() {
             <div className="p-2 bg-accent/10 rounded-lg text-accent">
               <Globe className="w-4 h-4" />
             </div>
-            <span className="text-accent text-[10px] font-bold tracking-[0.4em] uppercase">
+            <span className="text-accent text-[10px] font-bold tracking-[0.2em]">
               Global Impact
             </span>
           </div>
@@ -134,7 +134,7 @@ export default function SocialTrust() {
                 key={i} 
                 className="p-6 md:p-8 border-r border-b last:border-b-0 even:border-r-0 border-accent/10 group hover:bg-[#FAFAFA] transition-colors duration-700 text-center"
               >
-                <div className="text-accent text-[7px] font-mono font-bold tracking-[0.2em] uppercase mb-3 opacity-30 group-hover:opacity-100 transition-opacity">
+                <div className="text-accent text-[7px] font-mono font-bold tracking-[0.1em] mb-3 opacity-30 group-hover:opacity-100 transition-opacity">
                   M_0{i + 1}
                 </div>
 
@@ -147,7 +147,7 @@ export default function SocialTrust() {
                   </span>
                 </div>
 
-                <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground mt-3 group-hover:text-foreground transition-colors duration-500">
+                <div className="text-[9px] font-bold tracking-[0.1em] text-muted-foreground mt-3 group-hover:text-foreground transition-colors duration-500">
                   {m.label}
                 </div>
               </div>
@@ -185,7 +185,7 @@ export default function SocialTrust() {
                   <span className={`font-black text-accent/60 ${iconSizes[i % iconSizes.length]}`}>
                     {logo.icon}
                   </span>
-                  <span className={`font-display font-bold tracking-tighter uppercase whitespace-nowrap ${sizes[i % sizes.length]}`}>
+                  <span className={`font-display font-bold tracking-tighter whitespace-nowrap ${sizes[i % sizes.length]}`}>
                     {logo.name}
                   </span>
                 </motion.div>
@@ -222,7 +222,7 @@ export default function SocialTrust() {
                     </div>
                     <div>
                       <div className="text-sm font-bold text-white tracking-tight">{t.author}</div>
-                      <div className="text-[10px] text-white/40 font-mono font-bold uppercase tracking-widest mt-0.5">{t.role}</div>
+                      <div className="text-[10px] text-white/40 font-mono font-bold tracking-widest mt-0.5">{t.role}</div>
                     </div>
                   </div>
                   

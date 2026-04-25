@@ -40,7 +40,7 @@ export default function Navbar() {
         y: isVisible ? 0 : -100,
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-50 py-3 bg-transparent"
+      className="fixed top-0 left-0 right-0 z-[100] py-3 bg-white/80 backdrop-blur-md md:bg-transparent"
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="group flex items-center">
@@ -74,7 +74,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-border shadow-sm text-foreground"
+          className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-foreground text-background shadow-xl border border-white/10 transition-transform active:scale-95"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}

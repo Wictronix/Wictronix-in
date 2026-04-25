@@ -103,7 +103,7 @@ function ServiceCard({ service, index, progress }: { service: any, index: number
             <h3 className="text-2xl font-display font-bold tracking-tighter mb-0.5">
               {service.title}
             </h3>
-            <p className="text-accent text-[9px] font-bold uppercase tracking-wider">
+            <p className="text-accent text-[9px] font-bold tracking-wider">
               {service.tagline}
             </p>
           </div>
@@ -111,7 +111,7 @@ function ServiceCard({ service, index, progress }: { service: any, index: number
             <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isHovered ? "bg-accent/10 text-accent" : "bg-white/10 text-white"}`}>
               <service.icon size={16} strokeWidth={2.5} />
             </div>
-            <span className={`text-[10px] font-mono font-bold tracking-widest uppercase transition-opacity ${isHovered ? "opacity-30" : "opacity-40"}`}>
+            <span className={`text-[10px] font-mono font-bold tracking-widest transition-opacity ${isHovered ? "opacity-30" : "opacity-40"}`}>
               // 0{index + 1}
             </span>
           </div>
@@ -139,7 +139,7 @@ function ServiceCard({ service, index, progress }: { service: any, index: number
         <div 
           className={`flex items-center justify-between pt-1 mt-1 border-t transition-colors ${isHovered ? "border-black/5" : "border-white/5"}`}
         >
-          <span className={`text-[9px] font-bold uppercase tracking-widest transition-colors ${isHovered ? "text-black/40" : "text-white/40"}`}>
+          <span className={`text-[9px] font-bold tracking-widest transition-colors ${isHovered ? "text-black/40" : "text-white/40"}`}>
             Explore Engine
           </span>
           <div className={`w-6 h-6 rounded-full border flex items-center justify-center transition-all ${isHovered ? "border-black/10 text-black group-hover:border-accent" : "border-white/10 text-white"}`}>
@@ -165,18 +165,18 @@ export default function Services() {
   });
 
   return (
-    <section ref={containerRef} id="services" className="relative min-h-[250vh] bg-white">
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-center">
+    <section ref={containerRef} id="services" className="relative min-h-[150vh] lg:min-h-[250vh] bg-white py-20 lg:py-0">
+      <div className="lg:sticky lg:top-0 lg:h-screen flex items-center lg:overflow-hidden">
+        <div className="container mx-auto px-6 md:px-12 py-10 lg:py-0">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-start lg:items-center">
             
-            {/* Left: Sticky Info */}
+            {/* Left: Info Area */}
             <div className="max-w-md relative z-20">
-              <span className="text-accent text-[10px] font-mono font-bold tracking-[0.5em] uppercase mb-8 block">
+              <span className="text-accent text-[10px] font-mono font-bold tracking-[0.2em] mb-4 md:mb-8 block">
                 Deployment Phase
               </span>
               
-              <h2 className="text-5xl md:text-7xl font-display font-bold leading-[0.85] tracking-tighter mb-10">
+              <h2 className="text-4xl md:text-7xl font-display font-bold leading-[0.85] tracking-tighter mb-6 md:mb-10">
                 The Core <br />
                 <span className="text-accent">Stack.</span>
               </h2>
@@ -211,15 +211,15 @@ export default function Services() {
             </div>
 
             {/* Mobile Fallback */}
-            <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6 w-full pb-20">
+            <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6 w-full pb-32 px-2">
               {services.map((service, i) => (
-                <div key={service.id} className="bg-[#0A0A0B] text-white rounded-3xl p-8 border border-white/5 shadow-2xl">
-                  <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-6">
-                    <service.icon size={24} />
+                <div key={service.id} className="bg-[#0A0A0B] text-white rounded-2xl p-6 border border-white/5 shadow-2xl">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-4">
+                    <service.icon size={20} />
                   </div>
-                  <h3 className="text-2xl font-display font-bold tracking-tight mb-2">{service.title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed mb-6">{service.description}</p>
-                  <Link href={service.href} className="text-accent font-bold text-xs uppercase tracking-widest inline-flex items-center">
+                  <h3 className="text-xl font-display font-bold tracking-tight mb-1">{service.title}</h3>
+                  <p className="text-white/60 text-[13px] leading-relaxed mb-5">{service.description}</p>
+                  <Link href={service.href} className="text-accent font-bold text-xs tracking-widest inline-flex items-center">
                     Learn More <ArrowRight size={14} className="ml-2" />
                   </Link>
                 </div>

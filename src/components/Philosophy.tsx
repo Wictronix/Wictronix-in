@@ -1,26 +1,26 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const philosophy = [
   {
     id: "integrate",
-    title: "INTEGRATE",
+    title: "Integrate",
     body: "The gap isn't tools—it's integration.",
     size: "w-48 h-48",
     style: { left: 'calc(40% - 50px)', top: '0', transform: 'translateX(-50%)' },
   },
   {
     id: "direct",
-    title: "DIRECT",
+    title: "Direct",
     body: "Strategic direction for outcomes.",
     size: "w-48 h-48",
     style: { left: 'calc(40% - 146px)', top: '166.27px', transform: 'translateX(-50%)' },
   },
   {
     id: "execute",
-    title: "EXECUTE",
+    title: "Execute",
     body: "We do the work that AI can't finish.",
     size: "w-48 h-48",
     style: { left: 'calc(40% + 46px)', top: '166.27px', transform: 'translateX(-50%)' },
@@ -29,6 +29,15 @@ const philosophy = [
 
 export default function Philosophy() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "start start"],
@@ -50,45 +59,52 @@ export default function Philosophy() {
     <section ref={containerRef} id="philosophy" className="relative min-h-[150vh] bg-white">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden relative">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left: Title Section */}
             <motion.div 
-              style={{ x: titleX, opacity: titleOpacity }}
-              className="relative"
+              style={{ x: isMobile ? 0 : titleX, opacity: titleOpacity }}
+              className="relative text-center lg:text-left"
             >
-              <span className="text-accent text-xs font-bold tracking-[0.4em] uppercase mb-8 inline-block">
+              <span className="text-accent text-[10px] md:text-xs font-bold tracking-[0.2em] mb-4 md:mb-8 inline-block">
                 Our Philosophy
               </span>
-              <h2 className="text-6xl md:text-8xl font-display font-bold leading-[0.9] tracking-tighter">
+              <h2 className="text-4xl md:text-8xl font-display font-bold leading-[0.9] tracking-tighter">
                 Execution is <br />
                 <span className="text-accent">Everything.</span>
               </h2>
             </motion.div>
 
             {/* Right: Precise Triangle Bubble Cluster */}
-            <div className="relative h-[450px] w-full flex items-center justify-center">
-              <div className="relative w-full max-w-[400px] h-[360px]">
+            <div className="relative h-[300px] md:h-[450px] w-full flex items-center justify-center">
+              <div className={`relative w-full max-w-[400px] h-full ${isMobile ? "flex flex-col items-center justify-center gap-4" : ""}`}>
                 {philosophy.map((item, i) => {
                   const isIntegrate = item.id === "integrate";
                   
+                  const mobileStyle = isMobile ? {
+                    position: 'relative' as const,
+                    left: 'auto',
+                    top: 'auto',
+                    transform: 'none',
+                  } : item.style;
+
                   return (
                     <motion.div
                       key={item.title}
                       style={{
-                        ...item.style,
+                        ...mobileStyle,
                         scale: isIntegrate ? integrateScale : othersScale,
                         opacity: isIntegrate ? 1 : othersOpacity,
                       }}
-                      className={`absolute ${item.size} rounded-full bg-accent shadow-[0_15px_60px_rgba(0,82,255,0.3)] flex flex-col items-center justify-center p-6 text-center z-10 border border-white/10`}
+                      className={`absolute ${isMobile ? "w-28 h-28" : item.size} rounded-full bg-accent shadow-[0_15px_60px_rgba(0,82,255,0.3)] flex flex-col items-center justify-center p-4 md:p-6 text-center z-10 border border-white/10`}
                     >
                       <motion.div style={{ opacity: contentOpacity }} className="flex flex-col items-center">
-                        <span className="text-white text-2xl font-display font-bold opacity-20 absolute top-6">
+                        <span className={`text-white ${isMobile ? "text-lg" : "text-2xl"} font-display font-bold opacity-20 absolute top-2 md:top-6`}>
                           0{i + 1}
                         </span>
-                        <h3 className="text-lg font-display font-bold tracking-tighter mb-1 text-white">
+                        <h3 className={`${isMobile ? "text-sm" : "text-lg"} font-display font-bold tracking-tighter mb-0.5 md:mb-1 text-white`}>
                           {item.title}
                         </h3>
-                        <p className="text-[10px] text-white/80 font-medium leading-tight px-2">
+                        <p className="text-[8px] md:text-[10px] text-white/80 font-medium leading-tight px-1 md:px-2">
                           {item.body}
                         </p>
                       </motion.div>
