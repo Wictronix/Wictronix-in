@@ -8,19 +8,23 @@ const words = ["performance", "intelligence", "ecosystems"];
 
 const carouselItems = [
   {
-    pill: "Execution Layer",
-    title: "Bespoke Digital Solutions for Scale.",
-    content: "We bridge the gap between ambitious ideas and technical reality.",
+    pill: "For founders, teams, and enterprises",
+    title: "\"The Execution Layer Between \nYour Ideas and Growth.\"",
+    content: "In the age of AI, everyone has access to the same tools. The gap isn't capability it's the ability to integrate, direct, and execute across domains without dropping the ball. WictroniX closes that gap.",
+    ctaPrimary: "Start a Project →",
+    ctaSecondary: "See Our Work →"
   },
   {
-    pill: "Growth Engine",
-    title: "Performance Based Indexing.",
-    content: "Our squads are indexed to your growth, not just your billable hours.",
+    pill: "Proof of work",
+    title: "\"₹40L Pipeline. 60 Days. \nOne B2B SaaS Client.\"",
+    content: "We don't show credentials. We show outcomes. Browse our work every project has a number attached.",
+    ctaPrimary: "Explore Our Work →",
   },
   {
-    pill: "Strategic Partner",
-    title: "Full-Stack Enterprise Strategy.",
-    content: "Operating as an embedded unit to execute across all domains.",
+    pill: "For enterprises & MNCs",
+    title: "\"Your Embedded Business \nDevelopment Unit.\"",
+    content: "A cross-functional team tech, marketing, strategy operating inside your growth objectives with founder-level accountability and agency-level speed.",
+    ctaPrimary: "Request a Team Audit →",
   },
 ];
 
@@ -89,25 +93,38 @@ export default function Hero() {
                 <motion.div
                   key={i}
                   animate={{
-                    x: pos === "center" ? 0 : pos === "left" ? -320 : 320,
-                    scale: pos === "center" ? 1 : 0.9,
-                    opacity: pos === "center" ? 1 : 0.5,
+                    x: pos === "center" ? 0 : pos === "left" ? -280 : 280,
+                    scale: pos === "center" ? 1 : 0.85,
+                    opacity: pos === "center" ? 1 : 0.4,
                     zIndex: pos === "center" ? 20 : 10,
                     rotateY: pos === "center" ? 0 : pos === "left" ? 15 : -15,
                   }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="absolute bg-white/10 backdrop-blur-3xl p-8 md:p-10 rounded-[32px] shadow-2xl text-center max-w-sm border border-white/20"
+                  className="absolute bg-white p-5 md:p-6 rounded-[20px] shadow-2xl text-center w-[320px] h-[340px] flex flex-col items-center justify-center border border-black/5"
                 >
-                  <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 text-white text-[9px] font-bold tracking-[0.2em] uppercase mb-6 border border-white/10">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                  <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-black/5 text-black text-[7px] font-bold tracking-[0.2em] uppercase mb-3 border border-black/10">
+                    <span className="w-1 h-1 rounded-full bg-accent animate-pulse" />
                     <span>{item.pill}</span>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-4 leading-tight tracking-tighter">
+                  <h2 className="text-lg md:text-xl font-display font-bold text-foreground mb-2 leading-tight tracking-tighter whitespace-pre-line">
                     {item.title}
                   </h2>
-                  <p className="text-white/60 font-medium text-sm md:text-base leading-relaxed">
+                  <p className="text-muted font-medium text-[11px] md:text-[12px] leading-snug max-w-[260px]">
                     {item.content}
                   </p>
+
+                  {item.ctaPrimary && (
+                    <div className="flex items-center justify-center gap-2 mt-5">
+                      <button className="px-4 py-2 bg-accent text-white rounded-full font-bold text-[9px] uppercase tracking-wider transition-all hover:bg-accent-dark hover:scale-105 active:scale-95 shadow-lg shadow-accent/20">
+                        {item.ctaPrimary}
+                      </button>
+                      {item.ctaSecondary && (
+                        <button className="px-4 py-2 bg-black/5 text-black rounded-full font-bold text-[9px] uppercase tracking-wider border border-black/5 transition-all hover:bg-black/10 hover:border-black/10">
+                          {item.ctaSecondary}
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </motion.div>
               );
             })}
