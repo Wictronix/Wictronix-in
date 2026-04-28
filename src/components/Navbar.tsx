@@ -6,10 +6,10 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import { Menu, X, ArrowRight, Zap } from "lucide-react";
 
 const navLinks = [
-  { name: "Services", href: "#services" },
-  { name: "Work", href: "#work" },
-  { name: "Philosophy", href: "#philosophy" },
-  { name: "Process", href: "#process" },
+  { name: "About Us", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Work", href: "/work" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -40,7 +40,7 @@ export default function Navbar() {
         y: isVisible ? 0 : -100,
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-[100] py-3 bg-white/80 backdrop-blur-md md:bg-transparent"
+      className="fixed top-0 left-0 right-0 z-[100] py-3 bg-transparent"
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="group flex items-center">
@@ -64,7 +64,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="#contact"
+            href="/contact"
             className="group relative flex items-center space-x-3 bg-foreground text-background px-7 py-3 rounded-full text-sm font-bold hover:bg-accent transition-all duration-500 overflow-hidden shadow-xl"
           >
             <span className="relative z-10">Start a Project</span>

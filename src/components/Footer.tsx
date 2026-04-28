@@ -21,7 +21,7 @@ const GithubIcon = () => (
 
 export default function Footer() {
   return (
-    <footer className="py-24 bg-foreground text-background overflow-hidden relative">
+    <footer id="contact" className="py-24 bg-foreground text-background overflow-hidden relative">
       <div className="absolute top-0 right-0 w-1/2 h-full bg-accent/5 -skew-x-12 translate-x-1/2 pointer-events-none" />
       
       <div className="container mx-auto px-6 relative z-10">
@@ -49,10 +49,15 @@ export default function Footer() {
           <div>
             <h4 className="text-[10px] font-bold tracking-[0.2em] text-accent mb-8">Navigation</h4>
             <ul className="space-y-4 text-base font-display font-bold">
-              {["Services", "Work", "Philosophy", "Process"].map(link => (
-                <li key={link}>
-                  <Link href={`#${link.toLowerCase()}`} className="hover:text-accent transition-colors">
-                    {link}
+              {[
+                { name: "About Us", href: "#philosophy" },
+                { name: "Services", href: "#services" },
+                { name: "Work", href: "#work" },
+                { name: "Contact", href: "#contact" }
+              ].map(link => (
+                <li key={link.name}>
+                  <Link href={link.href} className="hover:text-accent transition-colors">
+                    {link.name}
                   </Link>
                 </li>
               ))}

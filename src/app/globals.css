@@ -9,9 +9,9 @@
   --color-card: #FFFFFF;
   --color-muted: #86868B;
   
-  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-plus-jakarta), sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: var(--font-quicksand), sans-serif;
+  --font-display: var(--font-quicksand), sans-serif;
+  --font-mono: var(--font-quicksand), monospace;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -38,11 +38,14 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-accent/20 selection:text-accent relative px-0;
+    @apply bg-background text-foreground antialiased selection:bg-accent/20 selection:text-accent relative px-0 font-sans;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
-  h1, h2, h3, h4, .font-display {
+  h1, h2, h3, h4, h5, h6, .font-display {
     @apply font-display tracking-tight;
+  }
+  button, input, textarea, select {
+    font-family: inherit;
   }
 }
 

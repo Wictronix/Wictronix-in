@@ -92,10 +92,10 @@ function Counter({ value, suffix, label, index }: { value: number; suffix: strin
         Metric_0{index + 1}
       </span>
       <div className="flex items-baseline space-x-1 mb-2">
-        <h3 className="text-5xl md:text-7xl font-display font-bold tracking-tighter text-foreground tabular-nums leading-none group-hover:italic transition-all duration-500">
+        <h3 className="text-5xl md:text-7xl font-display font-bold tracking-tighter text-foreground tabular-nums leading-none transition-all duration-500">
           {count}
         </h3>
-        <span className="text-2xl md:text-3xl font-display font-bold text-accent italic">
+        <span className="text-2xl md:text-3xl font-display font-bold text-accent">
           {suffix}
         </span>
       </div>
@@ -122,7 +122,7 @@ export default function SocialTrust() {
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tighter leading-[0.95]">
-            Proof of <span className="text-accent italic">Scale.</span>
+            Proof of <span className="text-accent">Scale.</span>
           </h2>
         </div>
 
@@ -142,7 +142,7 @@ export default function SocialTrust() {
                   <h3 className="text-3xl md:text-4xl font-display font-bold tracking-tighter text-foreground tabular-nums leading-none">
                     {m.value}
                   </h3>
-                  <span className="text-lg md:text-xl font-display font-bold text-accent italic">
+                  <span className="text-lg md:text-xl font-display font-bold text-accent">
                     {m.suffix}
                   </span>
                 </div>
@@ -182,7 +182,7 @@ export default function SocialTrust() {
                     ${scales[i % scales.length]}
                   `}
                 >
-                  <span className={`font-black text-accent/60 ${iconSizes[i % iconSizes.length]}`}>
+                  <span className={`font-bold text-accent/60 ${iconSizes[i % iconSizes.length]}`}>
                     {logo.icon}
                   </span>
                   <span className={`font-display font-bold tracking-tighter whitespace-nowrap ${sizes[i % sizes.length]}`}>
@@ -211,7 +211,7 @@ export default function SocialTrust() {
               <Quote className="absolute top-8 right-8 w-8 h-8 text-white/5 group-hover:text-accent/20 transition-colors duration-500" />
               
               <div className="relative z-10">
-                <p className="text-base md:text-lg font-medium mb-12 leading-relaxed text-white/90 italic">
+                <p className="text-base md:text-lg font-medium mb-12 leading-relaxed text-white/90">
                   "{t.quote}"
                 </p>
 

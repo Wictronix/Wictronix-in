@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CursorFollower from "@/components/CursorFollower";
 import CustomScrollbar from "@/components/CustomScrollbar";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -26,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="selection:bg-accent/20 selection:text-accent relative">
-      <body className={`${plusJakartaSans.variable} ${geistMono.variable} antialiased font-sans`}>
+    <html lang="en" data-scroll-behavior="smooth" className="selection:bg-accent/20 selection:text-accent relative">
+      <body className={`${quicksand.className} ${quicksand.variable} antialiased`}>
         <CursorFollower />
         <CustomScrollbar />
         <SmoothScroll>{children}</SmoothScroll>

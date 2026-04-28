@@ -52,10 +52,7 @@ export default function SelectedWork() {
   // Header transforms
   const headerScale = useTransform(scrollYProgress, [0, 0.3], [isMobile ? 1.4 : 2, 1]);
   const headerY = useTransform(scrollYProgress, [0, 0.3], [isMobile ? "10vh" : "20vh", "0vh"]);
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
-  
   // Project list transforms
-  const listOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   const listY = useTransform(scrollYProgress, [0.2, 0.4], [50, 0]);
 
   return (
@@ -63,7 +60,7 @@ export default function SelectedWork() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-24 gap-8">
           <motion.div 
-            style={{ scale: headerScale, y: headerY, opacity: headerOpacity }}
+            style={{ scale: headerScale, y: headerY }}
             className="max-w-2xl origin-left"
           >
             <span className="text-accent text-[10px] md:text-xs font-bold tracking-[0.2em] mb-4 md:mb-6 inline-block">
@@ -75,7 +72,7 @@ export default function SelectedWork() {
             </h2>
           </motion.div>
           
-          <motion.div style={{ opacity: listOpacity }}>
+          <motion.div>
             <Link 
               href="/work" 
               className="group flex items-center space-x-3 bg-foreground text-background px-8 py-4 rounded-full font-bold hover:bg-accent transition-all duration-500"
@@ -88,7 +85,7 @@ export default function SelectedWork() {
 
         <div className="max-w-4xl mx-auto">
           <motion.div 
-            style={{ opacity: listOpacity, y: listY }}
+            style={{ y: listY }}
             className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 lg:gap-48"
           >
             {projects.map((project, i) => (

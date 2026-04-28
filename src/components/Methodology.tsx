@@ -76,7 +76,7 @@ function PhaseCard({ step, index, progress, isMobile }: { step: any, index: numb
         </div>
 
         {/* Subtle Phase ID */}
-        <div className="absolute top-6 right-8 text-6xl font-display font-black opacity-[0.03] select-none z-10">
+        <div className="absolute top-6 right-8 text-6xl font-display font-bold opacity-[0.03] select-none z-10">
           {step.id}
         </div>
 
@@ -159,7 +159,7 @@ export default function Methodology() {
               Execution Lifecycle
             </motion.span>
             <h2 className="text-3xl md:text-7xl font-display font-bold tracking-tighter leading-none">
-              How We <span className="text-accent italic">Build.</span>
+              How We <span className="text-accent">Build.</span>
             </h2>
           </div>
 
