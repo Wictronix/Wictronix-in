@@ -337,7 +337,7 @@ export default function AboutPage() {
           {/* Large Background Quote with Parallax */}
           <div className="mt-32 text-center relative">
             <motion.div 
-              style={{ x: isMobile ? 0 : valuesScrollX, hide: isMobile ? true : false, willChange: "transform" }}
+              style={{ x: isMobile ? 0 : valuesScrollX, willChange: "transform" }}
               className={`absolute -top-12 left-0 right-0 text-[10vw] font-display font-bold opacity-[0.03] whitespace-nowrap pointer-events-none ${isMobile ? 'hidden' : ''}`}
             >
               EXECUTION IS EVERYTHING EXECUTION IS EVERYTHING
