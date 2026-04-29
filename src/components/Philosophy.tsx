@@ -7,7 +7,7 @@ const philosophy = [
   {
     id: "integrate",
     title: "Integrate",
-    body: "The gap isn't tools—it's integration.",
+    body: "The gap isn't tools-it's integration.",
     size: "w-48 h-48",
     style: { left: 'calc(40% - 50px)', top: '0', transform: 'translateX(-50%)' },
   },
@@ -68,7 +68,7 @@ export default function Philosophy() {
               <span className="text-accent text-[10px] md:text-xs font-bold tracking-[0.2em] mb-4 md:mb-8 inline-block">
                 Our Philosophy
               </span>
-              <h2 className="text-4xl md:text-8xl font-display font-bold leading-[0.9] tracking-tighter">
+              <h2 className="text-[2rem] md:text-8xl font-display font-bold leading-[0.9] tracking-tighter">
                 Execution is <br />
                 <span className="text-accent">Everything.</span>
               </h2>

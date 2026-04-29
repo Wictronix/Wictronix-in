@@ -9,42 +9,41 @@ const LinkedInIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
 );
 
-const logos = [
-  { name: "Acme Corp", icon: "◈" }, { name: "Wayne Ent", icon: "●" }, { name: "Soylent", icon: "◆" }, 
-  { name: "Initech", icon: "■" }, { name: "Umbrella", icon: "○" }, { name: "Hooli", icon: "H" }, 
-  { name: "Globex", icon: "G" }, { name: "Stark Ind", icon: "S" }, { name: "Cyberdyne", icon: "C" }, 
-  { name: "Massive", icon: "M" }, { name: "Bluth Co", icon: "B" }, { name: "Dunder", icon: "D" }, 
-  { name: "Aperture", icon: "A" }, { name: "Wonka", icon: "W" }, { name: "Veidt", icon: "V" }
+import Image from "next/image";
+
+const clientLogos = [
+  { name: "DQ Care", path: "/images/logos/DQcare.webp" },
+  { name: "Broad", path: "/images/logos/broad.webp" },
+  { name: "Moveazy", path: "/images/logos/moveazy.webp" },
+  { name: "PPS", path: "/images/logos/pps.webp" },
+  { name: "Success Techno", path: "/images/logos/successtechno.webp" },
+  { name: "Zetquant", path: "/images/logos/zetquant.webp" },
+  { name: "CTC", path: "/images/logos/CTC.webp" },
+  { name: "Logo White", path: "/images/logos/logo_white.avif", invert: true },
 ];
 
 const metrics = [
-  { value: 50, suffix: "+", label: "Projects shipped" },
-  { value: 4, suffix: "", label: "Countries" },
-  { value: 2, suffix: "Cr+", label: "Revenue generated" },
-  { value: 12, suffix: "+", label: "Industries" },
+  { value: 50, suffix: "+", label: "Engagements Delivered" },
+  { value: 4, suffix: "", label: "Markets Served" },
+  { value: 10, suffix: "Cr+", label: "Capital Facilitated" },
+  { value: 12, suffix: "+", label: "Industry Verticals" },
 ];
 
 const testimonials = [
   {
-    quote: "WictroniX generated ₹40L in pipeline within 60 days. They think like co-founders.",
-    author: "Rahul Sharma",
-    role: "CEO, TechFlow",
-    image: "/images/testimonials/rahul.jpg",
-    tags: ["Tech", "Marketing"],
+    quote: "They didn't just build a tool; they built a revenue engine. We saw a 3x increase in inbound leads within the first quarter of deployment.",
+    author: "Prateek Kataria",
+    role: "Managing Director, Broad HVAC",
   },
   {
-    quote: "Speed is unmatched. MVP live and processing payments in under three weeks.",
-    author: "Sarah Jenkins",
-    role: "Founder, Bloomly",
-    image: "/images/testimonials/sarah.jpg",
-    tags: ["Product", "Strategy"],
+    quote: "The level of ownership WictroniX takes is unparalleled. They solved complex integration gaps that our internal teams had been struggling with for months.",
+    author: "Dr. Ankit Shah",
+    role: "Founder, DQ Care",
   },
   {
-    quote: "Precision-engineered solutions that actually scale. The best tech partner we've had.",
+    quote: "Strategic, execution-focused, and fast. They managed to drop our customer acquisition costs by 40% while doubling our platform activity.",
     author: "James Chen",
-    role: "CTO, Nexus",
-    image: "/images/testimonials/james.jpg",
-    tags: ["Engineering", "SaaS"],
+    role: "CTO, Zetquant",
   },
 ];
 
@@ -162,35 +161,25 @@ export default function SocialTrust() {
 
         {/* Scattered "Organic" Logo Cloud */}
         <div className="py-24 border-y border-border/40 mb-20 relative overflow-hidden">
-          <div className="flex flex-wrap justify-center items-center gap-x-12 md:gap-x-20 gap-y-10 md:gap-y-16 max-w-6xl mx-auto">
-            {logos.map((logo, i) => {
-              // Deterministic "random" variations based on index
-              const sizes = ["text-[10px]", "text-xs", "text-sm", "text-base"];
-              const iconSizes = ["text-lg", "text-xl", "text-2xl", "text-3xl"];
-              const offsets = ["translate-y-0", "translate-y-2", "-translate-y-3", "translate-y-4", "-translate-y-1"];
-              const scales = ["scale-100", "scale-110", "scale-90", "scale-105"];
-              
-              return (
-                <motion.div 
-                  key={i} 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className={`flex items-center space-x-2 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-default
-                    ${offsets[i % offsets.length]}
-                    ${scales[i % scales.length]}
-                  `}
-                >
-                  <span className={`font-bold text-accent/60 ${iconSizes[i % iconSizes.length]}`}>
-                    {logo.icon}
-                  </span>
-                  <span className={`font-display font-bold tracking-tighter whitespace-nowrap ${sizes[i % sizes.length]}`}>
-                    {logo.name}
-                  </span>
-                </motion.div>
-              );
-            })}
+          <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center items-center gap-x-12 md:gap-x-20 gap-y-10 md:gap-y-16 max-w-5xl mx-auto">
+            {clientLogos.map((logo, i) => (
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="relative h-16 w-44 md:h-20 md:w-56 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-default"
+              >
+                <Image
+                  src={logo.path}
+                  alt={logo.name}
+                  fill
+                  sizes="(max-width: 768px) 100px, 150px"
+                  className={`object-contain ${(logo as any).invert ? 'invert' : ''}`}
+                />
+              </motion.div>
+            ))}
           </div>
         </div>
 
@@ -212,26 +201,16 @@ export default function SocialTrust() {
               
               <div className="relative z-10">
                 <p className="text-base md:text-lg font-medium mb-12 leading-relaxed text-white/90">
-                  "{t.quote}"
+                  &quot;{t.quote}&quot;
                 </p>
 
                 <div className="flex items-center justify-between border-t border-white/10 pt-8 mt-auto">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 group-hover:border-accent/30 transition-colors overflow-hidden">
-                      <img src={t.image} alt={t.author} className="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-white tracking-tight">{t.author}</div>
-                      <div className="text-[10px] text-white/40 font-mono font-bold tracking-widest mt-0.5">{t.role}</div>
+                  <div className="flex flex-col">
+                    <div className="text-sm font-bold text-white tracking-tight">{t.author}</div>
+                    <div className="text-[10px] text-accent font-mono font-bold tracking-widest mt-0.5 uppercase">
+                      {t.role.split(',')[0]}
                     </div>
                   </div>
-                  
-                  <Link 
-                    href="#" 
-                    className="w-8 h-8 rounded-xl border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent hover:bg-accent/5 transition-all duration-500"
-                  >
-                    <LinkedInIcon />
-                  </Link>
                 </div>
               </div>
             </motion.div>

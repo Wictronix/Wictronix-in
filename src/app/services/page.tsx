@@ -174,7 +174,7 @@ export default function ServicesPage() {
 
                 <div className="border-t border-black/5 pt-10">
                   <p className="text-[11px] text-muted-foreground font-medium leading-relaxed mb-8 max-w-sm">
-                    "Every engagement is customized. These aren't packages—they're capabilities we deploy based on what your business actually needs."
+                    "Every engagement is customized. These aren't packages, they're capabilities we deploy based on what your business actually needs."
                   </p>
                   
                   <Link 

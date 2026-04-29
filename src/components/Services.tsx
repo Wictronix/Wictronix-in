@@ -13,7 +13,14 @@ const services = [
     tagline: "Scalable Infrastructure & AI",
     description: "Building scalable digital infrastructure and AI-driven products with extreme precision.",
     icon: Code,
-    items: ["Web & Mobile Apps", "AI Agents", "SaaS Products", "UI/UX Design"],
+    items: [
+      "Full-Stack Web Applications",
+      "Mobile Applications (iOS + Android)",
+      "ERP/CRM Systems",
+      "AI Agents",
+      "Custom SaaS Products",
+      "UI/UX Design"
+    ],
     href: "/services/technology",
     details: { speed: "99.9%", uptime: "24/7", stack: "Next.js / AI" }
   },
@@ -24,7 +31,12 @@ const services = [
     tagline: "Performance & Brand Velocity",
     description: "Data-led growth strategies that convert intent into revenue through precision targeting.",
     icon: Megaphone,
-    items: ["SEO & Organic", "Performance Ads", "Brand Identity", "Content Strategy"],
+    items: [
+      "SEO & Search Optimization",
+      "Social Media Marketing",
+      "Brand Identity",
+      "Performance Marketing"
+    ],
     href: "/services/marketing",
     details: { reach: "Global", roas: "5.2x", focus: "Conversion" }
   },
@@ -35,7 +47,12 @@ const services = [
     tagline: "Strategic Scale & GTM",
     description: "Strategic direction for market expansion and business scale backed by real-world data.",
     icon: Lightbulb,
-    items: ["GTM Strategy", "Business Dev", "Fundraising", "Market Research"],
+    items: [
+      "Tech & Business Consulting",
+      "Fundraising Strategy",
+      "GTM Strategy",
+      "Business Development"
+    ],
     href: "/services/consulting",
     details: { equity: "Aligned", exit: "Focused", network: "Global" }
   },
@@ -115,7 +132,7 @@ function ServiceCard({ service, index, progress }: { service: any, index: number
 
             {/* Feature List (Restored Vertical Bullet Points) */}
             <div className="grid grid-cols-1 gap-1.5">
-              {service.items.slice(0, 3).map((item: string) => (
+              {service.items.map((item: string) => (
                 <div key={item} className="flex items-center space-x-2">
                   <div className="w-1 h-1 bg-accent/60 rounded-full" />
                   <span className={`text-[10px] font-bold tracking-tight transition-opacity ${isHovered ? "opacity-60" : "opacity-90"}`}>{item}</span>
@@ -163,12 +180,12 @@ export default function Services() {
             {/* Left: Info Area */}
             <div className="max-w-md relative z-20">
               <span className="text-accent text-[10px] font-mono font-bold tracking-[0.2em] mb-4 md:mb-8 block">
-                Deployment Phase
+                Services
               </span>
               
               <h2 className="text-4xl md:text-7xl font-display font-bold leading-[0.85] tracking-tighter mb-6 md:mb-10">
-                The Core <br />
-                <span className="text-accent">Stack.</span>
+                What We <br />
+                <span className="text-accent">Do.</span>
               </h2>
               
               <p className="text-muted text-base font-medium leading-relaxed max-w-sm mb-16 opacity-80">

@@ -3,22 +3,28 @@
 import { motion } from "framer-motion";
 import React from "react";
 
+import Image from "next/image";
+
 const logos = [
-  { name: "Acme Corp", icon: "◈" }, { name: "Wayne Ent", icon: "●" }, { name: "Soylent", icon: "◆" }, 
-  { name: "Initech", icon: "■" }, { name: "Umbrella", icon: "○" }, { name: "Hooli", icon: "H" }, 
-  { name: "Globex", icon: "G" }, { name: "Stark Ind", icon: "S" }, { name: "Cyberdyne", icon: "C" }, 
-  { name: "Massive", icon: "M" }, { name: "Bluth Co", icon: "B" }, { name: "Dunder", icon: "D" }, 
-  { name: "Aperture", icon: "A" }, { name: "Wonka", icon: "W" }, { name: "Veidt", icon: "V" }
+  { name: "DQ Care", path: "/images/logos/DQcare.webp" },
+  { name: "Broad", path: "/images/logos/broad.webp" },
+  { name: "Moveazy", path: "/images/logos/moveazy.webp" },
+  { name: "PPS", path: "/images/logos/pps.webp" },
+  { name: "Success Techno", path: "/images/logos/successtechno.webp" },
+  { name: "Zetquant", path: "/images/logos/zetquant.webp" },
+  { name: "CTC", path: "/images/logos/CTC.webp" },
+  { name: "Logo White", path: "/images/logos/logo_white.avif", invert: true },
 ];
 
 interface LogoMarqueeProps {
   title?: string;
   subtitle?: string;
   variant?: "light" | "dark";
+  grayscale?: boolean;
 }
 
-export default function LogoMarquee({ title, subtitle, variant = "light" }: LogoMarqueeProps) {
-  const duplicatedLogos = [...logos, ...logos, ...logos];
+export default function LogoMarquee({ title, subtitle, variant = "light", grayscale = false }: LogoMarqueeProps) {
+  const duplicatedLogos = [...logos, ...logos, ...logos, ...logos];
 
   return (
     <section className={`py-24 overflow-hidden ${variant === "dark" ? "bg-black text-white" : "bg-white text-foreground"}`}>
@@ -40,14 +46,17 @@ export default function LogoMarquee({ title, subtitle, variant = "light" }: Logo
           {duplicatedLogos.map((logo, i) => (
             <div 
               key={i} 
-              className="flex items-center space-x-3 mx-12 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-default group/logo"
+              className={`flex items-center mx-12 transition-all duration-500 cursor-default group/logo ${grayscale ? "grayscale opacity-40 hover:grayscale-0 hover:opacity-100" : "opacity-80 hover:opacity-100"}`}
             >
-              <span className="font-bold text-accent/60 text-3xl group-hover/logo:scale-110 transition-transform">
-                {logo.icon}
-              </span>
-              <span className="font-display font-bold tracking-tighter text-xl">
-                {logo.name}
-              </span>
+              <div className="relative h-12 w-32">
+                <Image
+                  src={logo.path}
+                  alt={logo.name}
+                  fill
+                  sizes="(max-width: 768px) 100px, 150px"
+                  className={`object-contain transition-transform duration-500 group-hover/logo:scale-110 ${(logo as any).invert ? 'invert' : ''}`}
+                />
+              </div>
             </div>
           ))}
         </div>

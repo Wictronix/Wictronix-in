@@ -3,28 +3,33 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const words = ["performance", "intelligence", "ecosystems"];
 
 const carouselItems = [
   {
     pill: "For founders, teams, and enterprises",
-    title: "\"The Execution Layer Between \nYour Ideas and Growth.\"",
+    title: "The Execution Layer Between \nYour Ideas and Growth.",
     content: "In the age of AI, everyone has access to the same tools. The gap isn't capability it's the ability to integrate, direct, and execute across domains without dropping the ball. WictroniX closes that gap.",
     ctaPrimary: "Start a Project →",
-    ctaSecondary: "See Our Work →"
+    hrefPrimary: "/contact",
+    ctaSecondary: "See Our Work →",
+    hrefSecondary: "/work"
   },
   {
     pill: "Proof of work",
-    title: "\"₹40L Pipeline. 60 Days. \nOne B2B SaaS Client.\"",
-    content: "We don't show credentials. We show outcomes. Browse our work every project has a number attached.",
+    title: "14,000+ Organic Clicks. \n60 Days. 80% AI Search Share.",
+    content: "We don't show credentials. We show outcomes. Browse our work-every project leads with a dominant metric.",
     ctaPrimary: "Explore Our Work →",
+    hrefPrimary: "/work",
   },
   {
     pill: "For enterprises & MNCs",
-    title: "\"Your Embedded Business \nDevelopment Unit.\"",
+    title: "Your Embedded Business \nDevelopment Unit.",
     content: "A cross-functional team tech, marketing, strategy operating inside your growth objectives with founder-level accountability and agency-level speed.",
     ctaPrimary: "Request a Team Audit →",
+    hrefPrimary: "/contact",
   },
 ];
 
@@ -74,7 +79,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               exit={{ opacity: 0, y: -20, rotateX: 90 }}
               transition={{ duration: 0.5, ease: "circOut" }}
-              className="text-5xl md:text-8xl font-display font-bold tracking-tighter text-foreground"
+              className="text-4xl md:text-8xl font-display font-bold tracking-tighter text-foreground"
             >
               {words[index]}<span className="text-accent">.</span>
             </motion.h1>
@@ -118,7 +123,7 @@ export default function Hero() {
                     rotateY: rotateY,
                   }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="absolute bg-white p-5 md:p-6 rounded-[20px] shadow-2xl text-center w-[280px] md:w-[320px] h-[320px] md:h-[340px] flex flex-col items-center justify-center border border-black/5"
+                  className="absolute bg-white p-5 md:p-6 rounded-[20px] shadow-2xl text-center w-[85vw] max-w-[280px] md:w-[320px] h-[300px] md:h-[340px] flex flex-col items-center justify-center border border-black/5"
                 >
                   <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-black/5 text-black text-[7px] font-bold tracking-[0.1em] mb-3 border border-black/10">
                     <span className="w-1 h-1 rounded-full bg-accent animate-pulse" />
@@ -133,13 +138,17 @@ export default function Hero() {
 
                   {item.ctaPrimary && (
                     <div className="flex items-center justify-center gap-2 mt-5">
-                      <button className="px-4 py-2 bg-accent text-white rounded-full font-bold text-[9px] tracking-wider transition-all hover:bg-accent-dark hover:scale-105 active:scale-95 shadow-lg shadow-accent/20">
-                        {item.ctaPrimary}
-                      </button>
-                      {item.ctaSecondary && (
-                        <button className="px-4 py-2 bg-black/5 text-black rounded-full font-bold text-[9px] tracking-wider border border-black/5 transition-all hover:bg-black/10 hover:border-black/10">
-                          {item.ctaSecondary}
+                      <Link href={item.hrefPrimary || "#"}>
+                        <button className="px-4 py-2 bg-accent text-white rounded-full font-bold text-[9px] tracking-wider transition-all hover:bg-accent-dark hover:scale-105 active:scale-95 shadow-lg shadow-accent/20">
+                          {item.ctaPrimary}
                         </button>
+                      </Link>
+                      {item.ctaSecondary && (
+                        <Link href={item.hrefSecondary || "#"}>
+                          <button className="px-4 py-2 bg-black/5 text-black rounded-full font-bold text-[9px] tracking-wider border border-black/5 transition-all hover:bg-black/10 hover:border-black/10">
+                            {item.ctaSecondary}
+                          </button>
+                        </Link>
                       )}
                     </div>
                   )}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X, ArrowRight, Zap } from "lucide-react";
 
@@ -13,6 +14,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isWorkPage = pathname === "/work" || pathname?.startsWith("/work/");
+  
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,21 +37,27 @@ export default function Navbar() {
     }
   });
 
+  const shouldShowBg = isScrolled || isWorkPage;
+
   return (
     <motion.nav
       initial={{ y: 0 }}
       animate={{ 
         y: isVisible ? 0 : -100,
+        backgroundColor: shouldShowBg ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0)",
+        backdropFilter: shouldShowBg ? "blur(40px) saturate(180%)" : "blur(0px) saturate(100%)",
+        borderBottom: shouldShowBg ? "1px solid rgba(0, 0, 0, 0.05)" : "1px solid rgba(255, 255, 255, 0)",
+        boxShadow: shouldShowBg ? "0 4px 30px rgba(0, 0, 0, 0.03)" : "0 0px 0px rgba(0, 0, 0, 0)",
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-[100] py-3 bg-transparent"
+      className="fixed top-0 left-0 w-screen z-[100] py-2.5 transition-all duration-500 overflow-x-hidden"
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="group flex items-center">
           <img 
             src="/main_logo.svg" 
             alt="WictroniX Logo" 
-            className="h-8 w-auto" 
+            className="h-7 w-auto" 
           />
         </Link>
 
@@ -57,7 +67,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-muted hover:text-accent transition-colors relative group"
+              className="text-sm font-semibold text-black hover:text-accent transition-colors relative group tracking-tight"
             >
               <span>{link.name}</span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
@@ -65,10 +75,10 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="group relative flex items-center space-x-3 bg-foreground text-background px-7 py-3 rounded-full text-sm font-bold hover:bg-accent transition-all duration-500 overflow-hidden shadow-xl"
+            className="group relative flex items-center space-x-2.5 bg-black text-white px-5 py-2.5 rounded-full text-xs font-bold hover:bg-accent transition-all duration-500 overflow-hidden shadow-xl"
           >
             <span className="relative z-10">Start a Project</span>
-            <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -102,7 +112,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                href="#contact"
+                href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="bg-accent text-white px-8 py-4 rounded-2xl text-center font-bold shadow-lg shadow-accent/20"
               >

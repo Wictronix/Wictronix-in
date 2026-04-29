@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ExternalLink, Zap, Mail, MapPin } from "lucide-react";
+import { ExternalLink, Zap, Mail, MapPin, Phone } from "lucide-react";
 
 const LinkedInIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
@@ -38,9 +38,13 @@ export default function Footer() {
               The execution layer for high-growth teams. We integrate, direct, and execute across tech, marketing, and strategy.
             </p>
             <div className="flex space-x-4">
-              {[LinkedInIcon, XIcon, InstagramIcon, GithubIcon].map((Icon, i) => (
-                <Link key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent hover:border-accent hover:text-white transition-all duration-300 scale-90">
-                  <Icon />
+              {[
+                { Icon: LinkedInIcon, href: "https://www.linkedin.com/company/wictronix/" },
+                { Icon: XIcon, href: "https://x.com/WictroniX" },
+                { Icon: InstagramIcon, href: "https://www.instagram.com/wictronix/" }
+              ].map((item, i) => (
+                <Link key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent hover:border-accent hover:text-white transition-all duration-300 scale-90">
+                  <item.Icon />
                 </Link>
               ))}
             </div>
@@ -50,10 +54,10 @@ export default function Footer() {
             <h4 className="text-[10px] font-bold tracking-[0.2em] text-accent mb-8">Navigation</h4>
             <ul className="space-y-4 text-base font-display font-bold">
               {[
-                { name: "About Us", href: "#philosophy" },
-                { name: "Services", href: "#services" },
-                { name: "Work", href: "#work" },
-                { name: "Contact", href: "#contact" }
+                { name: "About Us", href: "/about" },
+                { name: "Services", href: "/services" },
+                { name: "Work", href: "/work" },
+                { name: "Contact", href: "/contact" }
               ].map(link => (
                 <li key={link.name}>
                   <Link href={link.href} className="hover:text-accent transition-colors">
@@ -69,11 +73,15 @@ export default function Footer() {
             <ul className="space-y-6">
               <li className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium">hello@wictronix.in</span>
+                <a href="mailto:info@wictronix.com" className="text-sm font-medium hover:text-accent transition-colors">info@wictronix.com</a>
               </li>
               <li className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium">Remote First / Global</span>
+                <Phone className="w-4 h-4 text-accent" />
+                <a href="tel:+917717596969" className="text-sm font-medium hover:text-accent transition-colors">+91 7717596969</a>
+              </li>
+              <li className="flex items-start space-x-3">
+                <MapPin className="w-4 h-4 text-accent mt-1" />
+                <span className="text-sm font-medium leading-relaxed">Vadodara, Gujarat, India</span>
               </li>
             </ul>
           </div>
@@ -82,8 +90,9 @@ export default function Footer() {
         <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-xs font-bold tracking-[0.1em] text-background/50 text-center md:text-left">
           <p>© 2024 WictroniX. No placeholders. Just execution.</p>
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Use</Link>
+            <Link href="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
           </div>
         </div>
       </div>

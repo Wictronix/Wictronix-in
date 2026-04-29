@@ -10,16 +10,18 @@ import { ArrowRight, Zap, Target, Rocket, ArrowUpRight } from "lucide-react";
 
 const leadership = [
   {
-    role: "Founder & CEO",
-    name: "Mihir",
+    role: "Co-founder & CEO",
+    name: "Mihir Gandhi",
     bio: "10 years building and scaling businesses across SaaS, fintech, and enterprise consulting.",
-    image: "/images/founder-1.png",
+    image: "/images/CEO.webp",
+    linkedin: "https://www.linkedin.com/in/mihir--gandhi/",
   },
   {
-    role: "Co-Founder & CTO",
-    name: "Varun",
-    bio: "Expert in distributed systems and AI, formerly leading high-scale engineering at global unicorns.",
-    image: "/images/founder-2.png",
+    role: "Co-Founder & CMO",
+    name: "Sunil Poonia",
+    bio: "Expert in brand strategy and digital growth, driving global marketing initiatives.",
+    image: "/images/CMO.webp",
+    linkedin: "https://www.linkedin.com/in/sunil-kumar-",
   }
 ];
 
@@ -224,7 +226,7 @@ export default function AboutPage() {
                   That gap isn't about skill. It's about integration. Marketing doesn't talk to tech. Tech doesn't understand the business model. Strategy gets made in a boardroom and dies in a Slack channel.
                 </p>
                 <p>
-                  WictroniX was built to be the <span className="text-foreground font-bold">execution layer</span> that connects these domains—a single cross-functional team with the accountability of a co-founder and the speed of an agency.
+                  WictroniX was built to be the <span className="text-foreground font-bold">execution layer</span> that connects these domains, a single cross-functional team with the accountability of a co-founder and the speed of an agency.
                 </p>
                 <p>
                   We've been doing this for three years. For startups and MNCs. From India, serving the US, Australia, Canada, and beyond.
@@ -282,7 +284,7 @@ export default function AboutPage() {
               { 
                 icon: Zap, 
                 title: "A Team, Not a Vendor", 
-                body: "You get a cross-functional squad—tech, marketing, strategy—not a project manager and a prayer. Our team sits inside your workflows, your Slack, your OKRs." 
+                body: "You get a cross-functional squad, tech, marketing, strategy, not a project manager and a prayer. Our team sits inside your workflows, your Slack, your OKRs." 
               },
               { 
                 icon: Target, 
@@ -301,7 +303,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 md:p-10 rounded-[40px] bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-700 group"
+                className="p-8 md:p-10 rounded-[40px] bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-700 group flex flex-col items-center text-center"
               >
                 <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center mb-8 group-hover:rotate-[10deg] transition-transform shadow-lg shadow-accent/20">
                   <value.icon className="w-7 h-7 text-white" />
@@ -339,7 +341,7 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-32 max-w-5xl mx-auto">
             {leadership.map((leader, i) => (
               <motion.div
                 key={leader.name}
@@ -349,7 +351,7 @@ export default function AboutPage() {
                 transition={{ delay: i * 0.15 }}
                 className="flex flex-col group"
               >
-                <div className="relative aspect-[4/5] mb-6 md:mb-8 overflow-hidden rounded-[32px] md:rounded-[40px] bg-muted shadow-2xl">
+                <div className="relative aspect-[4/5] mb-6 md:mb-8 overflow-hidden rounded-[32px] md:rounded-[40px] bg-muted shadow-2xl max-w-[320px] mx-auto w-full">
                   <Image
                     src={leader.image}
                     alt={leader.name}
@@ -374,7 +376,12 @@ export default function AboutPage() {
                     "{leader.bio}"
                   </p>
                   
-                  <a href="#" className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-foreground hover:text-accent transition-colors group/linkedin">
+                  <a 
+                    href={leader.linkedin} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-foreground hover:text-accent transition-colors group/linkedin"
+                  >
                     <span>LinkedIn Profile</span>
                     <ArrowUpRight className="w-4 h-4 group-hover/linkedin:translate-x-0.5 group-hover/linkedin:-translate-y-0.5 transition-transform" />
                   </a>

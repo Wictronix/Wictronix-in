@@ -46,7 +46,7 @@ export default function CTA() {
                 </div>
                 <h2 className="text-3xl md:text-4xl font-display font-bold leading-[0.95] tracking-tighter mb-6">Ready to stop planning?</h2>
                 <p className="text-white/80 text-base mb-10 max-w-xs font-medium">
-                  Whether it's a website or a full GTM strategy—we move in weeks, not quarters.
+                  Whether it's a website or a full GTM strategy, we move in weeks, not quarters.
                 </p>
               </div>
               
