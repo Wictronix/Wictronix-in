@@ -61,7 +61,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-screen bg-white flex flex-col items-center justify-start overflow-hidden pt-24 md:pt-32">
+    <section className="relative h-[calc(100vh+20px)] bg-white flex flex-col items-center justify-start overflow-hidden pt-24 md:pt-32 border-b-[3px] border-accent">
       {/* Header Text Overlay */}
       <div className="text-center z-20 mb-4 md:mb-12 px-6">
         <motion.p 
@@ -79,7 +79,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               exit={{ opacity: 0, y: -20, rotateX: 90 }}
               transition={{ duration: 0.5, ease: "circOut" }}
-              className="text-[2.5rem] sm:text-5xl md:text-8xl font-display font-bold tracking-tighter text-foreground"
+              className="text-[2.75rem] sm:text-5xl md:text-8xl font-display font-bold tracking-tighter text-foreground"
             >
               {words[index]}<span className="text-accent">.</span>
             </motion.h1>
