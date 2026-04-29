@@ -44,7 +44,7 @@ export default function Philosophy() {
   });
 
   // Transforms for the "Integrate" bubble
-  const integrateScale = useTransform(scrollYProgress, [0.1, 0.8], [2.5, 1]);
+  const integrateScale = useTransform(scrollYProgress, [0.1, 0.8], isMobile ? [1.5, 1] : [2.5, 1]);
   const contentOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1]);
   
   // Transforms for other bubbles
@@ -92,8 +92,9 @@ export default function Philosophy() {
                       key={item.title}
                       style={{
                         ...mobileStyle,
-                        scale: isIntegrate ? integrateScale : othersScale,
-                        opacity: isIntegrate ? 1 : othersOpacity,
+                        scale: isMobile ? 1 : (isIntegrate ? integrateScale : othersScale),
+                        opacity: isMobile ? 1 : (isIntegrate ? 1 : othersOpacity),
+                        willChange: "transform, opacity",
                       }}
                       className={`absolute ${isMobile ? "w-32 h-32" : item.size} rounded-full bg-accent shadow-[0_15px_60px_rgba(0,82,255,0.3)] flex flex-col items-center justify-center p-4 md:p-6 text-center z-10 border border-white/10`}
                     >

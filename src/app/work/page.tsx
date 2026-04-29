@@ -48,6 +48,7 @@ export default function WorkPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: i * 0.1 }}
+                style={{ willChange: "transform, opacity" }}
                 className="group relative flex flex-col h-full bg-[#0A0A0A] rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-accent/40 transition-all duration-700 hover:shadow-[0_0_80px_-20px_rgba(59,130,246,0.3)]"
               >
                 {/* Image Section with Parallax Hover */}
@@ -64,7 +65,8 @@ export default function WorkPage() {
                   <div className="absolute top-6 right-6 z-20">
                     <motion.div 
                       whileHover={{ scale: 1.05 }}
-                      className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl"
+                      className="bg-black/60 backdrop-blur-xl md:backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl"
+                      style={{ backdropFilter: typeof window !== "undefined" && window.innerWidth < 768 ? "none" : "blur(24px)" }}
                     >
                       <div className="text-accent text-xl md:text-2xl font-display font-bold leading-none mb-1">
                         {project.metric}

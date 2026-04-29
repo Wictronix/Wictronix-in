@@ -9,7 +9,7 @@ import { Menu, X, ArrowRight, Zap } from "lucide-react";
 const navLinks = [
   { name: "About Us", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Work", href: "/work" },
+  { name: "Our Work", href: "/work" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -45,7 +45,9 @@ export default function Navbar() {
       animate={{ 
         y: isVisible ? 0 : -100,
         backgroundColor: shouldShowBg ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0)",
-        backdropFilter: shouldShowBg ? "blur(40px) saturate(180%)" : "blur(0px) saturate(100%)",
+        backdropFilter: shouldShowBg 
+          ? (typeof window !== "undefined" && window.innerWidth < 768 ? "blur(8px) saturate(180%)" : "blur(40px) saturate(180%)")
+          : "blur(0px) saturate(100%)",
         borderBottom: shouldShowBg ? "1px solid rgba(0, 0, 0, 0.05)" : "1px solid rgba(255, 255, 255, 0)",
         boxShadow: shouldShowBg ? "0 4px 30px rgba(0, 0, 0, 0.03)" : "0 0px 0px rgba(0, 0, 0, 0)",
       }}
@@ -67,7 +69,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-semibold text-black hover:text-accent transition-colors relative group tracking-tight"
+              className="text-base font-semibold text-black hover:text-accent transition-colors relative group tracking-tight"
             >
               <span>{link.name}</span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />

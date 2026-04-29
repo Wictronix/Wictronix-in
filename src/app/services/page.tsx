@@ -120,6 +120,7 @@ export default function ServicesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
+              style={{ willChange: "transform, opacity" }}
               className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-12 md:gap-20 group relative
                 p-10 md:p-16 border-2 border-accent/20 hover:border-accent/40 bg-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] transition-all duration-700
                 ${i === 0 ? "mt-[30px]" : ""}

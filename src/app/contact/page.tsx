@@ -84,6 +84,8 @@ export default function ContactPage() {
       });
 
       const result = await response.json();
+      console.log("Form Submission Result:", result);
+      
       if (result.success) {
         setStatus("success");
         setFormData({
@@ -97,9 +99,11 @@ export default function ContactPage() {
           source: ""
         });
       } else {
+        console.error("Submission failed:", result.message || "Unknown error");
         setStatus("error");
       }
     } catch (error) {
+      console.error("Fetch error:", error);
       setStatus("error");
     }
   };
@@ -165,23 +169,26 @@ export default function ContactPage() {
                 {status === "success" ? (
                   <motion.div 
                     key="success"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="h-[600px] flex flex-col items-center justify-center text-center space-y-6 relative z-10"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="h-[500px] md:h-[600px] flex flex-col items-center justify-center text-center space-y-8 relative z-10"
                   >
-                    <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mb-4">
-                      <Send className="text-accent w-10 h-10" />
+                    <div className="w-24 h-24 bg-accent/10 rounded-full flex items-center justify-center mb-4 relative">
+                      <div className="absolute inset-0 bg-accent/20 blur-2xl rounded-full animate-pulse" />
+                      <Send className="text-accent w-10 h-10 relative z-10" />
                     </div>
-                    <h2 className="text-3xl font-display font-bold text-white tracking-tighter">Message Received.</h2>
-                    <p className="text-white/60 max-w-sm">
-                      Our execution team has been notified. Expect a response in your inbox within 24 hours.
-                    </p>
+                    <div className="space-y-4">
+                      <h2 className="text-4xl md:text-5xl font-display font-bold text-white tracking-tighter">Thank You!</h2>
+                      <p className="text-white/60 text-lg md:text-xl font-medium max-w-xs mx-auto leading-relaxed">
+                        We have received your inquiry and will be <span className="text-accent">getting back to you soon.</span>
+                      </p>
+                    </div>
                     <button 
                       onClick={() => setStatus("idle")}
-                      className="text-accent font-bold uppercase tracking-widest text-xs border border-accent/30 px-8 py-4 rounded-xl hover:bg-accent/10 transition-colors"
+                      className="text-white font-bold uppercase tracking-widest text-[10px] bg-white/5 border border-white/10 px-10 py-5 rounded-2xl hover:bg-white/10 transition-all active:scale-95 mt-8"
                     >
-                      Send Another
+                      Send Another Message
                     </button>
                   </motion.div>
                 ) : (
@@ -246,7 +253,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-6">
-                      <div className="space-y-2">
+                      <div className="space-y-2 relative">
                         <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest ml-1">What do you need? *</label>
                         <select 
                           required 
@@ -256,15 +263,37 @@ export default function ContactPage() {
                           className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white/60 focus:outline-none focus:border-accent transition-colors appearance-none cursor-pointer"
                         >
                           <option className="bg-black" value="">Select a service</option>
-                          <option className="bg-black" value="technology">Technology</option>
-                          <option className="bg-black" value="marketing">Marketing</option>
-                          <option className="bg-black" value="consulting">Consulting</option>
-                          <option className="bg-black" value="embedded">Embedded Team</option>
-                          <option className="bg-black" value="multiple">Multiple Services</option>
-                          <option className="bg-black" value="not-sure">Not Sure Yet</option>
+                          <optgroup label="Technology" className="bg-black text-accent font-bold">
+                            <option className="bg-black text-white" value="web-dev">Full-Stack Web Dev</option>
+                            <option className="bg-black text-white" value="mobile-apps">Mobile Apps (iOS/Android)</option>
+                            <option className="bg-black text-white" value="ai-automation">AI Agents & Automation</option>
+                            <option className="bg-black text-white" value="saas-products">Custom SaaS Products</option>
+                            <option className="bg-black text-white" value="ui-ux">UI/UX Design</option>
+                            <option className="bg-black text-white" value="erp-crm">ERP/CRM Systems</option>
+                          </optgroup>
+                          <optgroup label="Marketing" className="bg-black text-accent font-bold">
+                            <option className="bg-black text-white" value="seo">SEO & Organic Growth</option>
+                            <option className="bg-black text-white" value="performance-marketing">Performance Marketing</option>
+                            <option className="bg-black text-white" value="social-media">Social Media Strategy</option>
+                            <option className="bg-black text-white" value="brand-identity">Brand Identity</option>
+                          </optgroup>
+                          <optgroup label="Consulting" className="bg-black text-accent font-bold">
+                            <option className="bg-black text-white" value="gtm-strategy">GTM Strategy</option>
+                            <option className="bg-black text-white" value="fundraising">Fundraising Strategy</option>
+                            <option className="bg-black text-white" value="business-dev">Business Development</option>
+                            <option className="bg-black text-white" value="tech-consulting">Tech Consulting</option>
+                          </optgroup>
+                          <optgroup label="Enterprise" className="bg-black text-accent font-bold">
+                            <option className="bg-black text-white" value="embedded-team">Embedded Team</option>
+                            <option className="bg-black text-white" value="multiple">Multiple Engines</option>
+                            <option className="bg-black text-white" value="other">Other / Let's Discuss</option>
+                          </optgroup>
                         </select>
+                        <div className="absolute right-6 top-[54px] pointer-events-none opacity-40">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
                       </div>
-                      <div className="space-y-2">
+                      <div className="space-y-2 relative">
                         <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest ml-1">Budget Range</label>
                         <select 
                           name="budget"
@@ -273,13 +302,17 @@ export default function ContactPage() {
                           className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white/60 focus:outline-none focus:border-accent transition-colors appearance-none cursor-pointer"
                         >
                           <option className="bg-black" value="">Select range</option>
-                          <option className="bg-black" value="under-5l">Under ₹5L</option>
+                          <option className="bg-black" value="under-10k">Under ₹10k</option>
+                          <option className="bg-black" value="10k-50k">₹10k - ₹50k</option>
+                          <option className="bg-black" value="50k-1l">₹50k - ₹1L</option>
+                          <option className="bg-black" value="1l-5l">₹1L - ₹5L</option>
                           <option className="bg-black" value="5l-15l">₹5L - ₹15L</option>
-                          <option className="bg-black" value="15l-50l">₹15L - ₹50L</option>
-                          <option className="bg-black" value="50l-1cr">₹50L - ₹1Cr</option>
-                          <option className="bg-black" value="1cr+">₹1Cr+</option>
-                          <option className="bg-black" value="discuss">Let's discuss</option>
+                          <option className="bg-black" value="15l+">₹15L+</option>
+                          <option className="bg-black" value="other">Other / Let's Discuss</option>
                         </select>
+                        <div className="absolute right-6 top-[54px] pointer-events-none opacity-40">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
                       </div>
                     </div>
 
@@ -295,22 +328,25 @@ export default function ContactPage() {
                       />
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-2 relative">
                       <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest ml-1">How did you hear about us?</label>
                       <select 
-                        name="source"
-                        value={formData.source}
-                        onChange={handleChange}
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white/60 focus:outline-none focus:border-accent transition-colors appearance-none cursor-pointer"
-                      >
-                        <option className="bg-black" value="">Select an option</option>
-                        <option className="bg-black" value="linkedin">LinkedIn</option>
-                        <option className="bg-black" value="google">Google Search</option>
-                        <option className="bg-black" value="referral">Referral</option>
-                        <option className="bg-black" value="social">Social Media</option>
-                        <option className="bg-black" value="other">Other</option>
-                      </select>
-                    </div>
+                          name="source"
+                          value={formData.source}
+                          onChange={handleChange}
+                          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white/60 focus:outline-none focus:border-accent transition-colors appearance-none cursor-pointer"
+                        >
+                          <option className="bg-black" value="">Select an option</option>
+                          <option className="bg-black" value="linkedin">LinkedIn</option>
+                          <option className="bg-black" value="google">Google Search</option>
+                          <option className="bg-black" value="referral">Referral</option>
+                          <option className="bg-black" value="social">Social Media</option>
+                          <option className="bg-black" value="other">Other</option>
+                        </select>
+                        <div className="absolute right-6 top-[54px] pointer-events-none opacity-40">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                      </div>
 
                     <motion.button 
                       type="submit"

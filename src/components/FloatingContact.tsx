@@ -35,7 +35,9 @@ export default function FloatingContact() {
               <span className="text-accent font-bold">Schedule a 30 min call</span>
             </p>
             <a 
-              href="/contact" 
+              href="https://calendly.com/wictronix/wicternship" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center space-x-2 bg-black text-white w-full py-3 rounded-xl text-xs font-bold hover:bg-accent transition-all shadow-lg shadow-black/10"
             >
               <Calendar size={14} />

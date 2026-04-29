@@ -95,7 +95,8 @@ export default function Hero() {
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         {/* Black Overlay */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] md:backdrop-blur-[1px] hidden md:block" />
+        <div className="absolute inset-0 bg-black/50 md:hidden" />
 
         {/* Carousel Cards Stack */}
         <div className="absolute inset-0 flex items-center justify-center z-20">
@@ -105,9 +106,9 @@ export default function Hero() {
               
               // Mobile stacking logic
               const xOffset = isMobile ? 0 : 280;
-              const yOffset = isMobile ? (pos === "center" ? 0 : pos === "left" ? -120 : 120) : 0;
-              const scale = isMobile ? (pos === "center" ? 1 : 0.85) : (pos === "center" ? 1 : 0.85);
-              const rotateX = isMobile ? (pos === "center" ? 0 : pos === "left" ? -10 : 10) : 0;
+              const yOffset = isMobile ? (pos === "center" ? 0 : pos === "left" ? -80 : 80) : 0;
+              const scale = isMobile ? (pos === "center" ? 1 : 0.9) : (pos === "center" ? 1 : 0.85);
+              const rotateX = isMobile ? 0 : (pos === "center" ? 0 : pos === "left" ? -10 : 10);
               const rotateY = isMobile ? 0 : (pos === "center" ? 0 : pos === "left" ? 15 : -15);
 
               return (
@@ -122,7 +123,8 @@ export default function Hero() {
                     rotateX: rotateX,
                     rotateY: rotateY,
                   }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  transition={{ duration: 0.6, ease: "circOut" }}
+                  style={{ willChange: "transform, opacity" }}
                   className="absolute bg-white p-5 md:p-6 rounded-[20px] shadow-2xl text-center w-[80vw] max-w-[300px] md:w-[340px] h-[300px] md:h-[340px] flex flex-col items-center justify-center border border-black/5"
                 >
                   <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-black/5 text-black text-[7px] font-bold tracking-[0.1em] mb-3 border border-black/10">

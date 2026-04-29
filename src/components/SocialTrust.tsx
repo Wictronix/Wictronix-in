@@ -32,17 +32,17 @@ const metrics = [
 
 const testimonials = [
   {
-    quote: "They didn't just build a tool; they built a revenue engine. We saw a 3x increase in inbound leads within the first quarter of deployment.",
+    quote: "We had a critical gap in our execution timeline. WictroniX integrated with our team and moved our product from development to a stable production release in under a month.",
     author: "Prateek Kataria",
     role: "Managing Director, Broad HVAC",
   },
   {
-    quote: "The level of ownership WictroniX takes is unparalleled. They solved complex integration gaps that our internal teams had been struggling with for months.",
+    quote: "The challenge was unifying our operational data with our marketing infrastructure. WictroniX audited our current workflows and implemented a more robust, scalable architecture.",
     author: "Dr. Ankit Shah",
     role: "Founder, DQ Care",
   },
   {
-    quote: "Strategic, execution-focused, and fast. They managed to drop our customer acquisition costs by 40% while doubling our platform activity.",
+    quote: "We required a partner capable of managing the intersection of high-scale engineering and performance marketing. Their consistent technical delivery has been a key factor in our growth.",
     author: "James Chen",
     role: "CTO, Zetquant",
   },
@@ -64,19 +64,23 @@ function Counter({ value, suffix, label, index }: { value: number; suffix: strin
 
   useEffect(() => {
     if (!inView) return;
-    let start = 0;
+    
+    let startTime: number | null = null;
     const duration = 2000;
-    const increment = value / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
+    
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      setCount(Math.floor(progress * value));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       }
-    }, 16);
-    return () => clearInterval(timer);
+    };
+    
+    const animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
   }, [inView, value]);
 
   return (
@@ -86,6 +90,7 @@ function Counter({ value, suffix, label, index }: { value: number; suffix: strin
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
+      style={{ willChange: "transform, opacity" }}
       className="flex flex-col group cursor-default"
     >
       <span className="text-accent text-[8px] font-mono font-bold tracking-[0.2em] mb-4 opacity-40 group-hover:opacity-100 transition-opacity">

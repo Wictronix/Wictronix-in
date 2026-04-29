@@ -77,6 +77,7 @@ export default function LogoMarquee({ title, subtitle, variant = "light", graysc
           display: flex;
           width: fit-content;
           animation: marquee 40s linear infinite;
+          will-change: transform;
         }
         .animate-marquee:hover {
           animation-play-state: paused;

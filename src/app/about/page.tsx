@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
@@ -41,24 +41,36 @@ export default function AboutPage() {
     target: containerRef,
     offset: ["start start", "end end"]
   });
+  
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   const { scrollYProgress: valuesProgress } = useScroll({
     target: valuesRef,
     offset: ["start end", "end start"]
   });
 
-  const valuesScrollX = useTransform(valuesProgress, [0, 1], [1500, -1500]);
+  const smoothValuesProgress = useSpring(valuesProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const valuesScrollX = useTransform(smoothValuesProgress, [0, 1], [1500, -1500]);
 
   // Hero transforms
-  const portalScale = useTransform(scrollYProgress, [0, 0.35, 0.5], [1, 5, 25]);
-  const portalRotate = useTransform(scrollYProgress, [0, 0.4], [0, 45]);
+  const portalScale = useTransform(smoothProgress, [0, 0.35, 0.5], isMobile ? [1, 2.5, 6] : [1, 5, 25]);
+  const portalRotate = useTransform(smoothProgress, [0, 0.4], isMobile ? [0, 15] : [0, 45]);
   
   const heroTextY = useTransform(scrollYProgress, [0, 0.2], [0, -40]);
   const heroTextOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   
-  const cubeY = useTransform(scrollYProgress, [0, 1], [-200, 1500]);
-  const cubeRotateX = useTransform(scrollYProgress, [0, 1], [0, 1080]);
-  const cubeRotateY = useTransform(scrollYProgress, [0, 1], [0, 2160]);
+  const cubeY = useTransform(smoothProgress, [0, 1], [-200, 1500]);
+  const cubeRotateX = useTransform(smoothProgress, [0, 1], isMobile ? [0, 360] : [0, 1080]);
+  const cubeRotateY = useTransform(smoothProgress, [0, 1], isMobile ? [0, 720] : [0, 2160]);
   
   return (
     <main ref={containerRef} className="relative bg-white min-h-screen">
@@ -104,17 +116,20 @@ export default function AboutPage() {
             <div className="relative flex justify-center lg:justify-end">
               <motion.div 
                 style={{ 
-                  scale: portalScale, 
-                  rotate: portalRotate
+                  scale: isMobile ? 1.2 : portalScale, 
+                  rotate: isMobile ? 0 : portalRotate,
+                  willChange: "transform"
                 }}
+                animate={isMobile ? { rotate: 360 } : {}}
+                transition={isMobile ? { duration: 30, repeat: Infinity, ease: "linear" } : {}}
                 className="relative pointer-events-none"
               >
                 <div className="relative w-[240px] h-[240px] md:w-[450px] md:h-[450px]">
-                  <div className="absolute inset-0 rounded-full border-[1px] border-accent/30 animate-[spin_20s_linear_infinite]" />
-                  <div className="absolute inset-[-30px] rounded-full border-[1px] border-accent/10 animate-[spin_30s_linear_infinite_reverse]" />
-                  <div className="absolute inset-[-60px] rounded-full border-[1px] border-accent/5 animate-[spin_40s_linear_infinite]" />
+                  <div className={`absolute inset-0 rounded-full border-[1px] border-accent/30 ${!isMobile ? 'animate-[spin_20s_linear_infinite]' : ''}`} />
+                  <div className="absolute inset-[-30px] rounded-full border-[1px] border-accent/10 animate-[spin_30s_linear_infinite_reverse] hidden md:block" />
+                  <div className="absolute inset-[-60px] rounded-full border-[1px] border-accent/5 animate-[spin_40s_linear_infinite] hidden md:block" />
                   
-                  <div className="absolute inset-8 rounded-full overflow-hidden border-[1px] border-white/20 shadow-[0_0_100px_rgba(0,82,255,0.2)] bg-foreground">
+                  <div className={`absolute inset-8 rounded-full overflow-hidden border-[1px] border-white/20 ${!isMobile ? 'shadow-[0_0_100px_rgba(0,82,255,0.2)]' : 'shadow-lg'} bg-foreground`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent)_0%,transparent_70%)] opacity-30" />
                     <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 via-transparent to-blue-500/10" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
@@ -129,7 +144,7 @@ export default function AboutPage() {
                           opacity: [0.2, 0.5, 0.2]
                         }}
                         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute w-16 h-16 bg-accent rounded-full blur-2xl"
+                        className={`absolute w-16 h-16 bg-accent rounded-full ${!isMobile ? 'blur-2xl' : 'blur-lg'}`}
                       />
                       <div className="relative w-2 h-2 bg-white rounded-full shadow-[0_0_15px_#fff] animate-pulse z-10" />
                       
@@ -159,8 +174,8 @@ export default function AboutPage() {
                     />
                   </div>
 
-                  <div className="absolute top-0 left-1/2 w-2 h-2 bg-accent rounded-full blur-sm animate-float" />
-                  <div className="absolute bottom-1/4 right-0 w-3 h-3 bg-blue-400 rounded-full blur-md animate-float [animation-delay:2s]" />
+                  <div className={`absolute top-0 left-1/2 w-2 h-2 bg-accent rounded-full ${!isMobile ? 'blur-sm animate-float' : ''}`} />
+                  <div className={`absolute bottom-1/4 right-0 w-3 h-3 bg-blue-400 rounded-full ${!isMobile ? 'blur-md animate-float [animation-delay:2s]' : ''}`} />
                 </div>
               </motion.div>
             </div>
@@ -186,11 +201,14 @@ export default function AboutPage() {
               <div className="mt-12 md:mt-16 h-64 md:h-80 flex items-center justify-center" style={{ perspective: "1500px" }}>
                 <motion.div 
                   style={{ 
-                    rotateX: cubeRotateX,
-                    rotateY: cubeRotateY,
+                    rotateX: isMobile ? 0 : cubeRotateX,
+                    rotateY: isMobile ? 0 : cubeRotateY,
                     y: isMobile ? 0 : cubeY,
-                    transformStyle: "preserve-3d"
+                    transformStyle: "preserve-3d",
+                    willChange: "transform"
                   }}
+                  animate={isMobile ? { rotateX: 360, rotateY: 360 } : {}}
+                  transition={isMobile ? { duration: 20, repeat: Infinity, ease: "linear" } : {}}
                   className="w-32 h-32 md:w-40 md:h-40 relative"
                 >
                   {[
@@ -203,7 +221,7 @@ export default function AboutPage() {
                   ].map((face, i) => (
                     <div 
                       key={i}
-                      className="absolute inset-0 bg-white/80 backdrop-blur-sm border-[3px] border-accent/40 shadow-[inset_0_0_50px_rgba(0,82,255,0.1)] flex items-center justify-center overflow-hidden rounded-xl"
+                      className={`absolute inset-0 bg-white/80 ${!isMobile ? 'backdrop-blur-sm' : ''} border-[3px] border-accent/40 shadow-[inset_0_0_50px_rgba(0,82,255,0.1)] flex items-center justify-center overflow-hidden rounded-xl`}
                       style={{ 
                         transform: face.transform,
                         backfaceVisibility: "visible"
@@ -319,8 +337,8 @@ export default function AboutPage() {
           {/* Large Background Quote with Parallax */}
           <div className="mt-32 text-center relative">
             <motion.div 
-              style={{ x: valuesScrollX }}
-              className="absolute -top-12 left-0 right-0 text-[10vw] font-display font-bold opacity-[0.03] whitespace-nowrap pointer-events-none"
+              style={{ x: isMobile ? 0 : valuesScrollX, hide: isMobile ? true : false, willChange: "transform" }}
+              className={`absolute -top-12 left-0 right-0 text-[10vw] font-display font-bold opacity-[0.03] whitespace-nowrap pointer-events-none ${isMobile ? 'hidden' : ''}`}
             >
               EXECUTION IS EVERYTHING EXECUTION IS EVERYTHING
             </motion.div>
@@ -388,6 +406,57 @@ export default function AboutPage() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* Section 3.5: Team Strength */}
+      <section className="py-20 bg-white relative z-10 border-t border-border">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-accent text-[9px] font-bold tracking-[0.2em] mb-4 block uppercase opacity-60">The Squad</span>
+              <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tighter leading-tight mb-8">
+                Execution-First <br /><span className="text-accent">DNA.</span>
+              </h2>
+              <div className="space-y-8">
+                <div className="flex items-start space-x-6 group">
+                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition-colors">
+                    <Zap className="w-6 h-6 text-accent group-hover:text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-display font-bold mb-2">Team Size - 25</h3>
+                    <p className="text-sm text-muted font-medium leading-relaxed">
+                      A lean, high-velocity squad of 25 specialists operating across three execution engines.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-6 group">
+                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition-colors">
+                    <Target className="w-6 h-6 text-accent group-hover:text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-display font-bold mb-2">Team Strength</h3>
+                    <p className="text-sm text-muted font-medium leading-relaxed">
+                      Our squad consists of top graduates with incredible problem solving and analytical skills, 
+                      hand-picked for their ability to thrive in high-stakes execution environments.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-accent/5 blur-[100px] rounded-full pointer-events-none" />
+              <div className="bg-[#FAFAFA] border border-black/5 rounded-[40px] p-10 relative overflow-hidden">
+                <p className="text-xl md:text-2xl font-display font-medium leading-relaxed text-foreground opacity-80">
+                  "We don't hire 'employees.' We hire founders-in-waiting who understand that in the real world, 
+                  execution is the only currency that matters."
+                </p>
+                <div className="mt-8 flex items-center space-x-3">
+                  <div className="w-8 h-px bg-accent" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-accent">WictroniX Selection Standard</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
