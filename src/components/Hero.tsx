@@ -61,9 +61,9 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-[calc(100vh+20px)] bg-white flex flex-col items-center justify-start overflow-hidden pt-24 md:pt-32 border-b-[3px] border-accent">
+    <section className="relative h-[calc(100vh+20px)] bg-white flex flex-col items-center justify-start overflow-hidden pt-16 md:pt-32">
       {/* Header Text Overlay */}
-      <div className="text-center z-20 mb-4 md:mb-12 px-6">
+      <div className="text-center z-20 mb-[46px] md:mb-12 px-6">
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
