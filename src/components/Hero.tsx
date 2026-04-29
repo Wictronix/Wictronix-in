@@ -105,7 +105,7 @@ export default function Hero() {
               
               // Mobile stacking logic
               const xOffset = isMobile ? 0 : 280;
-              const yOffset = isMobile ? (pos === "center" ? 0 : pos === "left" ? -20 : 20) : 0;
+              const yOffset = isMobile ? (pos === "center" ? 0 : pos === "left" ? -120 : 120) : 0;
               const scale = isMobile ? (pos === "center" ? 1 : 0.85) : (pos === "center" ? 1 : 0.85);
               const rotateX = isMobile ? (pos === "center" ? 0 : pos === "left" ? -10 : 10) : 0;
               const rotateY = isMobile ? 0 : (pos === "center" ? 0 : pos === "left" ? 15 : -15);
