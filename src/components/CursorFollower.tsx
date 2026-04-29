@@ -87,7 +87,7 @@ export default function CursorFollower() {
               x: "-50%",
               y: "-50%",
             }}
-            className="w-8 h-8 border border-foreground/60 rounded-full absolute top-0 left-0"
+            className="w-8 h-8 border border-white rounded-full absolute top-0 left-0"
           />
         )}
       </AnimatePresence>
