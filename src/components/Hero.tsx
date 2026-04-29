@@ -161,7 +161,7 @@ export default function Hero() {
 
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border border-accent/[0.02] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border border-accent/[0.02] rounded-full" />
       </div>
     </section>
   );

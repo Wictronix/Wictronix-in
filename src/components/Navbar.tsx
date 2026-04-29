@@ -50,7 +50,7 @@ export default function Navbar() {
         boxShadow: shouldShowBg ? "0 4px 30px rgba(0, 0, 0, 0.03)" : "0 0px 0px rgba(0, 0, 0, 0)",
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-[100] py-2.5 transition-all duration-500"
+      className="fixed top-0 left-0 right-0 w-[100vw] z-[100] py-2.5 transition-all duration-500"
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="group flex items-center">

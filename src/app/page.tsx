@@ -26,7 +26,7 @@ export default function Home() {
         delay: 2.2, 
         ease: "linear" 
       }}
-      className="min-h-screen relative"
+      className="min-h-screen relative overflow-x-clip"
     >
       <Navbar />
       <Hero />
