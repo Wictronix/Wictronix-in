@@ -88,7 +88,7 @@ export default function Hero() {
       </div>
 
       {/* Main Image Container - Positioned Downward */}
-      <div className="relative w-[94%] h-[540px] md:h-auto md:aspect-video rounded-t-[30px] md:rounded-t-[60px] overflow-hidden z-10 shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.1)] border-x border-t border-border/50">
+      <div className="relative w-[94%] h-[580px] md:h-auto md:aspect-video rounded-t-[30px] md:rounded-t-[60px] overflow-hidden z-10 shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.1)] border-x border-t border-border/50">
         <img
           src="/images/premium_tech_bg.png?v=1.1"
           alt="Premium Tech Background"

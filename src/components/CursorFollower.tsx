@@ -15,6 +15,9 @@ export default function CursorFollower() {
   const ring1X = useSpring(cursorX, springConfig);
   const ring1Y = useSpring(cursorY, springConfig);
   
+  const ringMiddleX = useSpring(cursorX, { damping: 28, stiffness: 200 });
+  const ringMiddleY = useSpring(cursorY, { damping: 28, stiffness: 200 });
+  
   const ring2X = useSpring(cursorX, { damping: 30, stiffness: 150 });
   const ring2Y = useSpring(cursorY, { damping: 30, stiffness: 150 });
 
@@ -42,7 +45,7 @@ export default function CursorFollower() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999] hidden md:block">
-      {/* Dynamic Cursor Shape */}
+      {/* Dynamic Cursor Shape (Outer Ring) */}
       <motion.div
         style={{
           translateX: ring1X,
@@ -55,7 +58,7 @@ export default function CursorFollower() {
           width: cursorType === "project" ? 80 : 32,
           height: cursorType === "project" ? 80 : 32,
           backgroundColor: cursorType === "project" ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0)",
-          borderColor: cursorType === "project" ? "rgba(255, 255, 255, 1)" : "rgba(10, 10, 11, 1)",
+          borderColor: cursorType === "project" ? "rgba(255, 255, 255, 1)" : "rgba(64, 64, 64, 0.8)",
           borderWidth: cursorType === "project" ? 0 : 1,
         }}
         className="rounded-full absolute top-0 left-0 flex items-center justify-center shadow-xl transition-colors duration-300"
@@ -74,7 +77,25 @@ export default function CursorFollower() {
         </AnimatePresence>
       </motion.div>
 
-      {/* Lagging Ring (Only in default mode) */}
+      {/* Middle Lagging Ring */}
+      <AnimatePresence>
+        {cursorType === "default" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              translateX: ringMiddleX,
+              translateY: ringMiddleY,
+              x: "-50%",
+              y: "-50%",
+            }}
+            className="w-8 h-8 border border-neutral-500/40 rounded-full absolute top-0 left-0"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Outer Lagging Ring */}
       <AnimatePresence>
         {cursorType === "default" && (
           <motion.div
@@ -87,12 +108,12 @@ export default function CursorFollower() {
               x: "-50%",
               y: "-50%",
             }}
-            className="w-8 h-8 border border-white rounded-full absolute top-0 left-0"
+            className="w-8 h-8 border border-neutral-400/60 rounded-full absolute top-0 left-0"
           />
         )}
       </AnimatePresence>
       
-      {/* Inner Blue Dot (Only in default mode) */}
+      {/* Inner Blue Dot */}
       <AnimatePresence>
         {cursorType === "default" && (
           <motion.div

@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Philosophy from "@/components/Philosophy";
@@ -9,8 +13,21 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <main className="min-h-screen relative">
+    <motion.main 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ 
+        duration: 1.5, 
+        delay: 2.2, 
+        ease: "linear" 
+      }}
+      className="min-h-screen relative"
+    >
       <Navbar />
       <Hero />
       <Philosophy />
@@ -20,6 +37,6 @@ export default function Home() {
       <SocialTrust />
       <CTA />
       <Footer />
-    </main>
+    </motion.main>
   );
 }

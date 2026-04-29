@@ -5,6 +5,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import CursorFollower from "@/components/CursorFollower";
 import CustomScrollbar from "@/components/CustomScrollbar";
 import FloatingContact from "@/components/FloatingContact";
+import Preloader from "@/components/Preloader";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" className="selection:bg-accent/20 selection:text-accent relative overflow-x-clip">
       <body className={`${quicksand.className} ${quicksand.variable} antialiased overflow-x-clip`}>
+        <Preloader />
         <CursorFollower />
         <CustomScrollbar />
         <SmoothScroll>{children}</SmoothScroll>
