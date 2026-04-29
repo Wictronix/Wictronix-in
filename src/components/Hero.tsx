@@ -79,7 +79,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               exit={{ opacity: 0, y: -20, rotateX: 90 }}
               transition={{ duration: 0.5, ease: "circOut" }}
-              className="text-4xl md:text-8xl font-display font-bold tracking-tighter text-foreground"
+              className="text-[2.5rem] sm:text-5xl md:text-8xl font-display font-bold tracking-tighter text-foreground"
             >
               {words[index]}<span className="text-accent">.</span>
             </motion.h1>
@@ -88,7 +88,7 @@ export default function Hero() {
       </div>
 
       {/* Main Image Container - Positioned Downward */}
-      <div className="relative w-[94%] aspect-[4/5] md:aspect-video rounded-t-[30px] md:rounded-t-[60px] overflow-hidden z-10 shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.1)] border-x border-t border-border/50">
+      <div className="relative w-[94%] h-[460px] md:h-auto md:aspect-video rounded-t-[30px] md:rounded-t-[60px] overflow-hidden z-10 shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.1)] border-x border-t border-border/50">
         <img
           src="/images/premium_tech_bg.png?v=1.1"
           alt="Premium Tech Background"
@@ -123,7 +123,7 @@ export default function Hero() {
                     rotateY: rotateY,
                   }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="absolute bg-white p-5 md:p-6 rounded-[20px] shadow-2xl text-center w-[85vw] max-w-[280px] md:w-[320px] h-[300px] md:h-[340px] flex flex-col items-center justify-center border border-black/5"
+                  className="absolute bg-white p-5 md:p-6 rounded-[20px] shadow-2xl text-center w-[80vw] max-w-[300px] md:w-[340px] h-[300px] md:h-[340px] flex flex-col items-center justify-center border border-black/5"
                 >
                   <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-black/5 text-black text-[7px] font-bold tracking-[0.1em] mb-3 border border-black/10">
                     <span className="w-1 h-1 rounded-full bg-accent animate-pulse" />

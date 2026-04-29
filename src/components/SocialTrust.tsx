@@ -14,6 +14,7 @@ import Image from "next/image";
 const clientLogos = [
   { name: "DQ Care", path: "/images/logos/DQcare.webp" },
   { name: "Broad", path: "/images/logos/broad.webp" },
+  { name: "Bell", path: "/images/logos/bell.webp", invert: true },
   { name: "Moveazy", path: "/images/logos/moveazy.webp" },
   { name: "PPS", path: "/images/logos/pps.webp" },
   { name: "Success Techno", path: "/images/logos/successtechno.webp" },
@@ -169,12 +170,13 @@ export default function SocialTrust() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="relative h-16 w-44 md:h-20 md:w-56 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-default"
+                className="relative h-16 w-44 md:h-20 md:w-56 opacity-100 hover:scale-110 transition-all duration-500 cursor-default"
               >
                 <Image
                   src={logo.path}
                   alt={logo.name}
                   fill
+                  priority
                   sizes="(max-width: 768px) 100px, 150px"
                   className={`object-contain ${(logo as any).invert ? 'invert' : ''}`}
                 />

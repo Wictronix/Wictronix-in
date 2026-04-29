@@ -23,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className="selection:bg-accent/20 selection:text-accent relative overflow-x-hidden">
-      <body className={`${quicksand.className} ${quicksand.variable} antialiased overflow-x-hidden`}>
+    <html lang="en" data-scroll-behavior="smooth" className="selection:bg-accent/20 selection:text-accent relative overflow-x-clip">
+      <body className={`${quicksand.className} ${quicksand.variable} antialiased overflow-x-clip`}>
         <CursorFollower />
         <CustomScrollbar />
         <SmoothScroll>{children}</SmoothScroll>

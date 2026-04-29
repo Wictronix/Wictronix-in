@@ -8,6 +8,7 @@ import Image from "next/image";
 const logos = [
   { name: "DQ Care", path: "/images/logos/DQcare.webp" },
   { name: "Broad", path: "/images/logos/broad.webp" },
+  { name: "Bell", path: "/images/logos/bell.webp", invert: true },
   { name: "Moveazy", path: "/images/logos/moveazy.webp" },
   { name: "PPS", path: "/images/logos/pps.webp" },
   { name: "Success Techno", path: "/images/logos/successtechno.webp" },
@@ -53,6 +54,7 @@ export default function LogoMarquee({ title, subtitle, variant = "light", graysc
                   src={logo.path}
                   alt={logo.name}
                   fill
+                  priority
                   sizes="(max-width: 768px) 100px, 150px"
                   className={`object-contain transition-transform duration-500 group-hover/logo:scale-110 ${(logo as any).invert ? 'invert' : ''}`}
                 />
