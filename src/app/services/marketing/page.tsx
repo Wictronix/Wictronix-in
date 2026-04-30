@@ -222,16 +222,16 @@ export default function MarketingPage() {
           <div className="grid md:grid-cols-2 gap-12">
             {[
               {
-                name: "Zenith Fintech",
-                tag: "GTM & Performance",
-                image: "/images/project-3.png",
-                metric: "120% MoM growth"
+                name: "HVAC Distributor",
+                tag: "SEO & AI Search",
+                image: "/images/work/hvac.png",
+                metric: "14,000+ organic clicks"
               },
               {
-                name: "Aura AI",
-                tag: "Organic & Content",
-                image: "/images/project-1.png",
-                metric: "₹40L pipeline in 60 days"
+                name: "FinTech Trading",
+                tag: "Social & Influencer",
+                image: "/images/work/fintech.png",
+                metric: "100+ leads in 30 days"
               }
             ].map((proj) => (
               <div key={proj.name} className="group relative aspect-[16/10] overflow-hidden bg-white/5 border border-white/10 shadow-2xl">

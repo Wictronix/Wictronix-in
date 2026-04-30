@@ -12,6 +12,15 @@ const LinkedInIcon = () => (
 import Image from "next/image";
 
 const clientLogos = [
+  { name: "The Hair Company", path: "/images/logos/the-hair-company.png" },
+  { name: "Unmaad", path: "/images/logos/unmaad.svg" },
+  { name: "Vensure Financial Services", path: "/images/logos/vensure.png" },
+  { name: "Success Technocrat", path: "/images/logos/success-technocrat.png" },
+  { name: "Derma Glow Zone", path: "/images/logos/derma-glow-zone.png" },
+  { name: "Katyayani Buildtech", path: "/images/logos/katyayani.png" },
+  { name: "Broad India", path: "/images/logos/broad-india.png" },
+  { name: "AB Seva Foundation", path: "/images/logos/ab-seva.png" },
+  { name: "Bharat Farmlands", path: "/images/logos/bharat-farmlands.png" },
   { name: "DQ Care", path: "/images/logos/DQcare.webp" },
   { name: "Broad", path: "/images/logos/broad.webp" },
   { name: "Bell", path: "/images/logos/bell.webp", invert: true },
@@ -167,7 +176,7 @@ export default function SocialTrust() {
 
         {/* Scattered "Organic" Logo Cloud */}
         <div className="py-24 border-y border-border/40 mb-20 relative overflow-hidden">
-          <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center items-center gap-x-12 md:gap-x-20 gap-y-10 md:gap-y-16 max-w-5xl mx-auto">
+          <div className="grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-x-8 md:gap-x-12 gap-y-10 md:gap-y-16 max-w-6xl mx-auto px-4">
             {clientLogos.map((logo, i) => (
               <motion.div 
                 key={i} 
@@ -175,15 +184,15 @@ export default function SocialTrust() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="relative h-16 w-44 md:h-20 md:w-56 opacity-100 hover:scale-110 transition-all duration-500 cursor-default"
+                className="relative h-12 w-28 md:h-14 md:w-36 opacity-100 hover:scale-110 transition-all duration-500 cursor-default"
               >
                 <Image
                   src={logo.path}
                   alt={logo.name}
                   fill
                   priority
-                  sizes="(max-width: 768px) 100px, 150px"
-                  className={`object-contain ${(logo as any).invert ? 'invert' : ''}`}
+                  sizes="(max-width: 768px) 80px, 120px"
+                  className={`object-contain ${logo.invert ? 'invert' : ''}`}
                 />
               </motion.div>
             ))}

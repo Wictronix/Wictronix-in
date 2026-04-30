@@ -12,14 +12,22 @@ const leadership = [
   {
     role: "Co-founder & CEO",
     name: "Mihir Gandhi",
-    bio: "10 years building and scaling businesses across SaaS, fintech, and enterprise consulting.",
+    highlights: [
+      "Program Manager, Amazon",
+      "Venture Partner, Picus Capital",
+      "IIMA' 27",
+      "Ex-Product Manager, Chingari",
+      "NIT CSE'24"
+    ],
     image: "/images/CEO.webp",
     linkedin: "https://www.linkedin.com/in/mihir--gandhi/",
   },
   {
     role: "Co-Founder & CMO",
     name: "Sunil Poonia",
-    bio: "Expert in brand strategy and digital growth, driving global marketing initiatives.",
+    highlights: [
+      "CSE'24"
+    ],
     image: "/images/CMO.webp",
     linkedin: "https://www.linkedin.com/in/sunil-kumar-",
   }
@@ -388,11 +396,16 @@ export default function AboutPage() {
                     {leader.role}
                   </span>
                   
-                  <div className="w-full h-px bg-black/10 mb-6" />
-                  
-                  <p className="text-sm text-muted font-medium leading-relaxed opacity-90 mb-8">
-                    "{leader.bio}"
-                  </p>
+                  <div className="space-y-1.5 mb-8">
+                    {leader.highlights.map((highlight, idx) => (
+                      <div key={idx} className="flex items-start space-x-2">
+                        <div className="w-1 h-1 bg-accent rounded-full mt-2 flex-shrink-0" />
+                        <p className="text-[13px] text-muted font-medium leading-tight opacity-90">
+                          {highlight}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                   
                   <a 
                     href={leader.linkedin} 

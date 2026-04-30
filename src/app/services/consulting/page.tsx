@@ -205,16 +205,16 @@ export default function ConsultingPage() {
           <div className="grid md:grid-cols-2 gap-12">
             {[
               {
-                name: "Zenith Fintech",
-                tag: "Fundraising & GTM",
-                image: "/images/project-3.png",
-                metric: "120% MoM growth"
+                name: "NGO Marketplace",
+                tag: "GTM & Marketplace Strategy",
+                image: "/images/work/ngo-marketplace.png",
+                metric: "50+ Features. 4 Stakeholder Portals"
               },
               {
-                name: "Pulse Health",
-                tag: "Embedded BD",
-                image: "/images/project-4.jpg",
-                metric: "Shipped MVP in 14 days"
+                name: "Healthcare Provider",
+                tag: "Strategy & Market Research",
+                image: "/images/work/ndis.png",
+                metric: "Top 3 Rankings in Australia"
               }
             ].map((proj) => (
               <div key={proj.name} className="group relative aspect-[16/10] overflow-hidden bg-white/5 border border-white/10 shadow-2xl">

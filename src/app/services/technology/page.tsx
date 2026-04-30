@@ -242,16 +242,16 @@ export default function TechnologyPage() {
           <div className="grid md:grid-cols-2 gap-12">
             {[
               {
-                name: "Aura AI",
-                tag: "AI Agents & Web",
-                image: "/images/project-1.png",
-                metric: "₹40L pipeline in 60 days"
+                name: "Social Impact NGO",
+                tag: "Web App & Community",
+                image: "/images/work/ngo.png",
+                metric: "100K+ Meta views in 30 days"
               },
               {
-                name: "Flux Commerce",
-                tag: "E-comm & CRO",
-                image: "/images/project-2.png",
-                metric: "3x conversion rate in 45 days"
+                name: "Doctor-Patient App",
+                tag: "Mobile App & Growth",
+                image: "/images/work/healthtech.png",
+                metric: "2,500+ users in 90 days"
               }
             ].map((proj) => (
               <div key={proj.name} className="group relative aspect-[16/10] overflow-hidden bg-white/5 border border-white/10 shadow-2xl">
