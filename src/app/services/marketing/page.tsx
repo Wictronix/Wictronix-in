@@ -55,13 +55,12 @@ export default function MarketingPage() {
   return (
     <main className="min-h-screen bg-white text-[#0A0A0B] selection:bg-accent/10">
       <Navbar />
-      
       {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden bg-white flex items-center justify-center pt-20">
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <div className="max-w-5xl mx-auto flex flex-col items-center relative">
             {/* Localized Grid Accent (Hero) */}
-            <div className="absolute -inset-20 z-0 pointer-events-none opacity-[0.05]"
+            <div className="absolute -inset-20 z-0 pointer-events-none opacity-[0.15]"
               style={{
                 backgroundImage: `linear-gradient(to right, #000000 1px, transparent 1px), linear-gradient(to bottom, #000000 1px, transparent 1px)`,
                 backgroundSize: '15px 15px',
@@ -103,7 +102,7 @@ export default function MarketingPage() {
       </section>
 
       {/* Service Blocks */}
-      <section className="py-20 md:py-32 relative bg-white">
+      <section className="py-20 md:py-32 relative bg-[#0A0A0B]">
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="space-y-20 md:space-y-32">
             {services.map((service, i) => (
@@ -117,10 +116,10 @@ export default function MarketingPage() {
               >
                 <div className={`container mx-auto flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-12 lg:gap-24`}>
                   {/* Visual Section: Clean Blend */}
-                  <div className="relative w-full lg:w-1/2 aspect-square md:aspect-video lg:aspect-square group overflow-hidden border border-black/5 shadow-sm">
+                  <div className="relative w-full lg:w-1/2 aspect-square md:aspect-video lg:aspect-square group overflow-hidden border border-white/5">
                     <div className="absolute inset-0 z-10 pointer-events-none">
-                      <div className={`absolute inset-0 bg-gradient-to-r ${i % 2 === 0 ? "from-transparent via-transparent to-white via-[75%]" : "from-white via-transparent to-transparent via-[25%]"} hidden lg:block`} />
-                      <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white via-[10%] group-even:via-[90%]" />
+                      <div className={`absolute inset-0 bg-gradient-to-r ${i % 2 === 0 ? "from-transparent via-transparent to-[#0A0A0B] via-[75%]" : "from-[#0A0A0B] via-transparent to-transparent via-[25%]"} hidden lg:block`} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0B] via-transparent to-[#0A0A0B] via-[10%] group-even:via-[90%]" />
                     </div>
                     
                     <Image 
@@ -128,11 +127,11 @@ export default function MarketingPage() {
                       alt={service.title} 
                       fill 
                       sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover transition-transform duration-1000" 
+                      className="object-cover transition-transform duration-1000 group-hover:scale-105" 
                     />
                     
                     <div className={`absolute ${i % 2 === 0 ? "-left-4" : "-right-4"} top-1/2 -translate-y-1/2 z-20 hidden lg:block`}>
-                      <div className="w-16 h-16 rounded-full bg-white backdrop-blur-3xl border border-black/5 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-700">
+                      <div className="w-16 h-16 rounded-full bg-accent/10 backdrop-blur-3xl border border-accent/20 flex items-center justify-center shadow-[0_0_50px_-10px_rgba(0,82,255,0.3)] group-hover:scale-110 transition-transform duration-700">
                         <service.icon className="w-7 h-7 text-accent" />
                       </div>
                     </div>
@@ -141,9 +140,9 @@ export default function MarketingPage() {
                   {/* Content Section */}
                   <div className="w-full lg:w-1/2 relative z-10">
                     {/* Localized Grid Accent */}
-                    <div className="absolute -inset-10 z-0 pointer-events-none opacity-[0.06] hidden lg:block"
+                    <div className="absolute -inset-10 z-0 pointer-events-none opacity-[0.05] hidden lg:block"
                       style={{
-                        backgroundImage: `linear-gradient(to right, #000000 1px, transparent 1px), linear-gradient(to bottom, #000000 1px, transparent 1px)`,
+                        backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
                         backgroundSize: '15px 15px',
                         maskImage: 'radial-gradient(circle at center, black, transparent 80%)',
                         WebkitMaskImage: 'radial-gradient(circle at center, black, transparent 80%)',
@@ -156,7 +155,7 @@ export default function MarketingPage() {
                     </div>
 
                     <div className="mb-10">
-                      <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tighter leading-[0.9] text-[#0A0A0B] group-hover:text-accent transition-colors duration-700 mb-6">
+                      <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tighter leading-[0.9] text-white group-hover:text-accent transition-colors duration-700 mb-6">
                         {service.title}
                       </h2>
                     </div>
@@ -170,7 +169,7 @@ export default function MarketingPage() {
                             {service.deliverables.map(item => (
                               <li key={item} className="flex items-start space-x-3">
                                 <div className="w-1 h-1 rounded-full bg-accent mt-1.5 flex-shrink-0" />
-                                <span className="text-[11px] font-medium text-black/60 leading-tight group-hover:text-black transition-colors">{item}</span>
+                                <span className="text-[11px] font-medium text-white/40 leading-tight group-hover:text-white/80 transition-colors">{item}</span>
                               </li>
                             ))}
                           </ul>
@@ -181,17 +180,17 @@ export default function MarketingPage() {
                       <div className="flex flex-col justify-between space-y-8">
                         <div className="space-y-4">
                           <h4 className="text-[9px] font-bold uppercase tracking-[0.3em] text-accent mb-6 opacity-50">Strategy</h4>
-                          <p className="text-[13px] text-black/40 font-medium leading-relaxed group-hover:text-black/80 transition-colors">
+                          <p className="text-[13px] text-white/30 font-medium leading-relaxed group-hover:text-white/70 transition-colors">
                             {service.methodology}
                           </p>
                         </div>
 
-                        <div className="pt-8 border-t border-black/5 group/edge">
+                        <div className="pt-8 border-t border-white/5 group/edge">
                           <div className="flex items-center space-x-3 mb-3">
                             <Sparkles className="w-3 h-3 text-accent opacity-50 group-hover/edge:rotate-12 transition-transform" />
                             <h4 className="text-[9px] font-bold uppercase tracking-[0.3em] text-accent opacity-80">The Edge</h4>
                           </div>
-                          <p className="text-[12px] text-black/80 font-bold leading-relaxed">
+                          <p className="text-[12px] text-white/80 font-bold leading-relaxed">
                             "{service.different}"
                           </p>
                         </div>

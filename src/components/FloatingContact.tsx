@@ -73,6 +73,7 @@ export default function FloatingContact() {
           onClick={() => setShowChatPopup(!showChatPopup)}
           whileHover={{ scale: 1.1, y: -4 }}
           whileTap={{ scale: 0.9 }}
+          suppressHydrationWarning
           className="w-14 h-14 bg-black rounded-full flex items-center justify-center shadow-xl shadow-black/20 transition-all border border-white/10 group relative"
           title="Get Assistance"
         >

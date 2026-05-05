@@ -71,7 +71,7 @@ export default function TechnologyPage() {
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <div className="max-w-5xl mx-auto flex flex-col items-center relative">
             {/* Localized Grid Accent (Hero) */}
-            <div className="absolute -inset-20 z-0 pointer-events-none opacity-[0.05]"
+            <div className="absolute -inset-20 z-0 pointer-events-none opacity-[0.15]"
               style={{
                 backgroundImage: `linear-gradient(to right, #000000 1px, transparent 1px), linear-gradient(to bottom, #000000 1px, transparent 1px)`,
                 backgroundSize: '15px 15px',

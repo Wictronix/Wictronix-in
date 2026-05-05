@@ -10,12 +10,14 @@ const navLinks = [
   { name: "About Us", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Our Work", href: "/work" },
+  { name: "Insights", href: "/insights" },
   { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const isWorkPage = pathname === "/work" || pathname?.startsWith("/work/");
+  const isInsightsPage = pathname === "/insights" || pathname?.startsWith("/insights/");
   
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -37,7 +39,7 @@ export default function Navbar() {
     }
   });
 
-  const shouldShowBg = isScrolled || isWorkPage;
+  const shouldShowBg = isScrolled || isWorkPage || isInsightsPage;
 
   return (
     <motion.nav

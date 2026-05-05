@@ -50,22 +50,21 @@ export default function ConsultingPage() {
       
       {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden bg-white flex items-center justify-center pt-20">
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div 
-            className="absolute inset-0 opacity-[0.08]"
-            style={{
-              backgroundImage: `linear-gradient(to right, #000000 1px, transparent 1px), linear-gradient(to bottom, #000000 1px, transparent 1px)`,
-              backgroundSize: '60px 60px',
-            }}
-          />
-        </div>
-
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
-          <div className="max-w-5xl mx-auto flex flex-col items-center">
+          <div className="max-w-5xl mx-auto flex flex-col items-center relative">
+            {/* Localized Grid Accent (Hero) */}
+            <div className="absolute -inset-20 z-0 pointer-events-none opacity-[0.15]"
+              style={{
+                backgroundImage: `linear-gradient(to right, #000000 1px, transparent 1px), linear-gradient(to bottom, #000000 1px, transparent 1px)`,
+                backgroundSize: '15px 15px',
+                maskImage: 'radial-gradient(circle at center, black, transparent 80%)',
+                WebkitMaskImage: 'radial-gradient(circle at center, black, transparent 80%)',
+              }}
+            />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 mb-8"
+              className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 mb-8 relative z-10"
             >
               <Sparkles className="w-3 h-3 text-accent" />
               <span className="text-accent text-[10px] font-bold tracking-[0.2em] uppercase">
@@ -77,7 +76,7 @@ export default function ConsultingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-[100px] font-display font-bold tracking-tighter leading-[0.95] md:leading-[0.85] mb-10 text-[#0A0A0B]"
+              className="text-4xl md:text-[100px] font-display font-bold tracking-tighter leading-[0.95] md:leading-[0.85] mb-10 text-[#0A0A0B] relative z-10"
             >
               Strategy That Stays <br />
               <span className="text-accent">Until It's Executed.</span>
@@ -87,7 +86,7 @@ export default function ConsultingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-base md:text-lg text-black/50 font-medium leading-relaxed max-w-3xl mx-auto"
+              className="text-base md:text-lg text-black/50 font-medium leading-relaxed max-w-3xl mx-auto relative z-10"
             >
               Most consultants hand you a deck and leave. We stay for the execution, ensuring the strategy actually hits the market. Results-first consulting.
             </motion.p>
@@ -96,8 +95,8 @@ export default function ConsultingPage() {
       </section>
 
       {/* Service Blocks */}
-      <section className="py-20 md:py-32 relative">
-        <div className="container mx-auto px-6 md:px-12">
+      <section className="py-20 md:py-32 relative bg-[#0A0A0B]">
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="space-y-20 md:space-y-32">
             {services.map((service, i) => (
               <motion.div
@@ -110,7 +109,7 @@ export default function ConsultingPage() {
               >
                 <div className={`container mx-auto flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-12 lg:gap-24`}>
                   {/* Visual Section */}
-                  <div className="relative w-full lg:w-1/2 aspect-square md:aspect-video lg:aspect-square group">
+                  <div className="relative w-full lg:w-1/2 aspect-square md:aspect-video lg:aspect-square group overflow-hidden">
                     <div className="absolute inset-0 z-10 pointer-events-none">
                       <div className={`absolute inset-0 bg-gradient-to-r ${i % 2 === 0 ? "from-transparent via-transparent to-[#0A0A0B] via-[70%]" : "from-[#0A0A0B] via-transparent to-transparent via-[30%]"} hidden lg:block`} />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0B] via-transparent to-[#0A0A0B] via-[15%] group-even:via-[85%]" />
@@ -121,7 +120,7 @@ export default function ConsultingPage() {
                       alt={service.title} 
                       fill 
                       sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover" 
+                      className="object-cover transition-transform duration-1000 group-hover:scale-105" 
                     />
                     
                     <div className={`absolute ${i % 2 === 0 ? "-left-4" : "-right-4"} top-1/2 -translate-y-1/2 z-20 hidden lg:block`}>
@@ -133,6 +132,16 @@ export default function ConsultingPage() {
 
                   {/* Content Section */}
                   <div className="w-full lg:w-1/2 relative z-10">
+                    {/* Localized Grid Accent */}
+                    <div className="absolute -inset-10 z-0 pointer-events-none opacity-[0.05] hidden lg:block"
+                      style={{
+                        backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
+                        backgroundSize: '15px 15px',
+                        maskImage: 'radial-gradient(circle at center, black, transparent 80%)',
+                        WebkitMaskImage: 'radial-gradient(circle at center, black, transparent 80%)',
+                      }}
+                    />
+                    
                     <div className="inline-flex items-center space-x-4 mb-8">
                       <span className="text-[10px] font-mono font-bold text-accent tracking-[0.5em] uppercase">Engine_{i + 1}</span>
                       <div className="h-px w-12 bg-accent/30" />
