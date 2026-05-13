@@ -40,30 +40,30 @@ export default function Philosophy() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "start start"],
+    offset: ["start end", "end start"],
   });
 
   // Transforms for the "Integrate" bubble
-  const integrateScale = useTransform(scrollYProgress, [0.1, 0.8], isMobile ? [1.5, 1] : [2.5, 1]);
-  const contentOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1]);
+  const integrateScale = useTransform(scrollYProgress, [0.1, 0.4], isMobile ? [1.8, 1] : [2.2, 1]);
+  const contentOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   
   // Transforms for other bubbles
-  const othersOpacity = useTransform(scrollYProgress, [0.6, 0.9], [0, 1]);
-  const othersScale = useTransform(scrollYProgress, [0.6, 0.9], [0.5, 1]);
+  const othersOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  const othersScale = useTransform(scrollYProgress, [0.2, 0.4], [0.6, 1]);
 
   // Transforms for Title
-  const titleX = useTransform(scrollYProgress, [0.5, 0.9], [-100, 0]);
-  const titleOpacity = useTransform(scrollYProgress, [0.5, 0.9], [0, 1]);
+  const titleX = useTransform(scrollYProgress, [0.2, 0.4], [-60, 0]);
+  const titleOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
 
   return (
-    <section ref={containerRef} id="philosophy" className="relative min-h-[150vh] bg-white">
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden relative">
+    <section ref={containerRef} id="philosophy" className="relative bg-white pt-40 pb-20 md:pt-64 md:pb-32">
+      <div className="relative flex items-center">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left: Title Section */}
             <motion.div 
               style={{ x: isMobile ? 0 : titleX, opacity: titleOpacity }}
-              className="relative text-center lg:text-left"
+              className="relative text-center lg:text-left -mt-10 md:-mt-32"
             >
               <span className="text-accent text-xs md:text-sm font-bold tracking-[0.2em] mb-4 md:mb-8 inline-block">
                 Our Philosophy
@@ -75,7 +75,7 @@ export default function Philosophy() {
             </motion.div>
 
             {/* Right: Precise Triangle Bubble Cluster */}
-            <div className="relative h-[400px] md:h-[450px] w-full flex items-center justify-center">
+            <div className="relative h-[450px] md:h-[450px] w-full flex items-center justify-center">
               <div className={`relative w-full max-w-[400px] h-full ${isMobile ? "flex flex-col items-center justify-center gap-6" : ""}`}>
                 {philosophy.map((item, i) => {
                   const isIntegrate = item.id === "integrate";
@@ -96,16 +96,16 @@ export default function Philosophy() {
                         opacity: isMobile ? 1 : (isIntegrate ? 1 : othersOpacity),
                         willChange: "transform, opacity",
                       }}
-                      className={`absolute ${isMobile ? "w-32 h-32" : item.size} rounded-full bg-accent shadow-[0_15px_60px_rgba(0,82,255,0.3)] flex flex-col items-center justify-center p-4 md:p-6 text-center z-10 border border-white/10`}
+                      className={`absolute ${isMobile ? "w-40 h-40" : item.size} rounded-full bg-accent shadow-[0_15px_60px_rgba(0,82,255,0.3)] flex flex-col items-center justify-center p-4 md:p-6 text-center z-10 border border-white/10`}
                     >
                       <motion.div style={{ opacity: contentOpacity }} className="flex flex-col items-center">
                         <span className={`text-white ${isMobile ? "text-xl" : "text-2xl"} font-display font-bold opacity-20 absolute top-2 md:top-6`}>
                           0{i + 1}
                         </span>
-                        <h3 className={`${isMobile ? "text-base" : "text-lg"} font-display font-bold tracking-tighter mb-0.5 md:mb-1 text-white`}>
+                        <h3 className={`${isMobile ? "text-lg" : "text-lg"} font-display font-bold tracking-tighter mb-0.5 md:mb-1 text-white`}>
                           {item.title}
                         </h3>
-                        <p className="text-[8px] md:text-[10px] text-white/80 font-medium leading-tight px-1 md:px-2">
+                        <p className="text-[9px] md:text-[10px] text-white/80 font-medium leading-tight px-1 md:px-2">
                           {item.body}
                         </p>
                       </motion.div>
@@ -118,16 +118,14 @@ export default function Philosophy() {
         </div>
       </div>
 
-      {/* Bottom Quote section - 80% Viewport Height */}
-      <div className="container mx-auto px-6 pb-32">
+      <div className="mt-20 md:mt-32 px-4 md:px-0">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="h-[80vh] flex flex-col items-center justify-center rounded-[40px] bg-foreground text-background text-center relative overflow-hidden px-10 md:px-20"
+          className="bg-foreground py-24 md:py-40 flex flex-col items-center justify-center text-center relative rounded-[30px] md:rounded-[60px] mx-auto max-w-[1400px] shadow-[0_0_120px_-20px_rgba(0,82,255,0.3)] border border-white/5"
         >
-          <div className="absolute top-0 right-0 w-full h-full bg-accent/5 -skew-x-12 translate-x-1/2 pointer-events-none" />
-          <p className="text-xl md:text-3xl font-display font-medium leading-tight tracking-tight max-w-4xl relative z-10 opacity-90">
+          <p className="text-xl md:text-5xl font-display font-bold leading-tight tracking-tight max-w-4xl text-background px-6">
             "We don't just plan. We build the <span className="text-accent">engines of growth</span> and run them for you."
           </p>
         </motion.div>

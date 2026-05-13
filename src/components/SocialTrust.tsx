@@ -15,19 +15,13 @@ const clientLogos = [
   { name: "The Hair Company", path: "/images/logos/the-hair-company.png" },
   { name: "Unmaad", path: "/images/logos/unmaad.svg" },
   { name: "Vensure Financial Services", path: "/images/logos/vensure.png" },
-  { name: "Success Technocrat", path: "/images/logos/success-technocrat.png" },
   { name: "Derma Glow Zone", path: "/images/logos/derma-glow-zone.png" },
   { name: "Katyayani Buildtech", path: "/images/logos/katyayani.png" },
   { name: "Broad India", path: "/images/logos/broad-india.png" },
   { name: "AB Seva Foundation", path: "/images/logos/ab-seva.png" },
   { name: "Bharat Farmlands", path: "/images/logos/bharat-farmlands.png" },
   { name: "DQ Care", path: "/images/logos/DQcare.webp" },
-  { name: "Broad", path: "/images/logos/broad.webp" },
   { name: "Bell", path: "/images/logos/bell.webp", invert: true },
-  { name: "Moveazy", path: "/images/logos/moveazy.webp" },
-  { name: "PPS", path: "/images/logos/pps.webp" },
-  { name: "Success Techno", path: "/images/logos/successtechno.webp" },
-  { name: "Zetquant", path: "/images/logos/zetquant.webp" },
   { name: "CTC", path: "/images/logos/CTC.webp" },
   { name: "Logo White", path: "/images/logos/logo_white.avif", invert: true },
 ];
@@ -51,9 +45,9 @@ const testimonials = [
     role: "Founder, DQ Care",
   },
   {
-    quote: "We required a partner capable of managing the intersection of high-scale engineering and performance marketing. Their consistent technical delivery has been a key factor in our growth.",
-    author: "James Chen",
-    role: "CTO, Zetquant",
+    quote: "Precision in execution is what sets WictroniX apart. They transformed our legacy financial systems into a high-performance digital engine that now drives our entire operation.",
+    author: "Sanjay Kumar",
+    role: "Director, Vensure",
   },
 ];
 
@@ -175,8 +169,8 @@ export default function SocialTrust() {
         </div>
 
         {/* Scattered "Organic" Logo Cloud */}
-        <div className="py-24 border-y border-border/40 mb-20 relative overflow-hidden">
-          <div className="grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-x-8 md:gap-x-12 gap-y-10 md:gap-y-16 max-w-6xl mx-auto px-4">
+        <div className="py-16 md:py-24 border-y border-border/40 mb-20 relative overflow-hidden">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-x-6 sm:gap-x-12 gap-y-12 md:gap-y-16 max-w-6xl mx-auto px-4">
             {clientLogos.map((logo, i) => (
               <motion.div 
                 key={i} 
@@ -184,7 +178,7 @@ export default function SocialTrust() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="relative h-12 w-28 md:h-14 md:w-36 opacity-100 hover:scale-110 transition-all duration-500 cursor-default"
+                className="relative h-10 w-24 sm:h-12 sm:w-28 md:h-14 md:w-36 opacity-100 hover:scale-110 transition-all duration-500 cursor-default"
               >
                 <Image
                   src={logo.path}

@@ -108,8 +108,8 @@ export default function Hero() {
               const xOffset = isMobile ? 0 : 280;
               const yOffset = isMobile ? (pos === "center" ? 0 : pos === "left" ? -80 : 80) : 0;
               const scale = isMobile ? (pos === "center" ? 1 : 0.9) : (pos === "center" ? 1 : 0.85);
-              const rotateX = isMobile ? 0 : (pos === "center" ? 0 : pos === "left" ? -10 : 10);
-              const rotateY = isMobile ? 0 : (pos === "center" ? 0 : pos === "left" ? 15 : -15);
+              const rotateX = isMobile ? 0 : (pos === "center" ? 0 : pos === "left" ? -2 : 2);
+              const rotateY = isMobile ? 0 : (pos === "center" ? 0 : pos === "left" ? 4 : -4);
 
               return (
                 <motion.div

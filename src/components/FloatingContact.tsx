@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, Calendar, X } from "lucide-react";
+import { Bot, Calendar, X } from "lucide-react";
 import { useState } from "react";
 
 export default function FloatingContact() {
@@ -25,13 +25,13 @@ export default function FloatingContact() {
               <X size={16} />
             </button>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
-                <MessageSquare size={16} className="text-white" />
+              <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
+                <Bot size={20} className="text-white" />
               </div>
               <span className="font-bold text-sm tracking-tight">WictroniX Assistant</span>
             </div>
             <p className="text-sm font-medium leading-relaxed mb-6">
-              Need assist? <br />
+              Need assistance? <br />
               <span className="text-accent font-bold">Schedule a 30 min call</span>
             </p>
             <a 
@@ -86,8 +86,8 @@ export default function FloatingContact() {
               1
             </motion.div>
           )}
-          <MessageSquare 
-            className={`w-6 h-6 transition-all duration-300 ${showChatPopup ? 'text-accent' : 'text-white'}`} 
+          <Bot 
+            className={`w-8 h-8 transition-all duration-300 ${showChatPopup ? 'text-accent' : 'text-white'}`} 
           />
         </motion.button>
       </div>

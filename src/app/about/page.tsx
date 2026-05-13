@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
@@ -26,7 +26,10 @@ const leadership = [
     role: "Co-Founder & CMO",
     name: "Sunil Poonia",
     highlights: [
-      "CSE'24"
+      "CSE'24",
+      "Revenue Specialist",
+      "Performance Marketer",
+      "Growth Analyst"
     ],
     image: "/images/CMO.webp",
     linkedin: "https://www.linkedin.com/in/sunil-kumar-",
@@ -50,35 +53,24 @@ export default function AboutPage() {
     offset: ["start start", "end end"]
   });
   
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   const { scrollYProgress: valuesProgress } = useScroll({
     target: valuesRef,
     offset: ["start end", "end start"]
   });
 
-  const smoothValuesProgress = useSpring(valuesProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  const springSettings = { stiffness: 35, damping: 25, restDelta: 0.01, restSpeed: 0.01 };
+  const smoothProgress = useSpring(scrollYProgress, springSettings);
+  const smoothValuesProgress = useSpring(valuesProgress, springSettings);
 
-  const valuesScrollX = useTransform(smoothValuesProgress, [0, 1], [1500, -1500]);
+  // Use raw progress on mobile for instant feedback, smooth on desktop
+  const activeProgress = isMobile ? scrollYProgress : smoothProgress;
+  const activeValuesProgress = isMobile ? valuesProgress : smoothValuesProgress;
 
-  // Hero transforms
-  const portalScale = useTransform(smoothProgress, [0, 0.35, 0.5], isMobile ? [1, 2.5, 6] : [1, 5, 25]);
-  const portalRotate = useTransform(smoothProgress, [0, 0.4], isMobile ? [0, 15] : [0, 45]);
-  
+  const valuesScrollX = useTransform(activeValuesProgress, [0, 1], [1500, -1500]);
+
+  // Hero transforms (Simplified: removed portal scaling/rotation)
   const heroTextY = useTransform(scrollYProgress, [0, 0.2], [0, -40]);
   const heroTextOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  
-  const cubeY = useTransform(smoothProgress, [0, 1], [-200, 1500]);
-  const cubeRotateX = useTransform(smoothProgress, [0, 1], isMobile ? [0, 360] : [0, 1080]);
-  const cubeRotateY = useTransform(smoothProgress, [0, 1], isMobile ? [0, 720] : [0, 2160]);
   
   return (
     <main ref={containerRef} className="relative bg-white min-h-screen">
@@ -120,24 +112,23 @@ export default function AboutPage() {
               </motion.p>
             </motion.div>
 
-            {/* Right Column: THE PORTAL */}
+            {/* Right Column: THE PORTAL (Static & Rotating) */}
             <div className="relative flex justify-center lg:justify-end">
               <motion.div 
                 style={{ 
-                  scale: isMobile ? 1.2 : portalScale, 
-                  rotate: isMobile ? 0 : portalRotate,
+                  scale: 1.2, 
                   willChange: "transform"
                 }}
-                animate={isMobile ? { rotate: 360 } : {}}
-                transition={isMobile ? { duration: 30, repeat: Infinity, ease: "linear" } : {}}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
                 className="relative pointer-events-none"
               >
                 <div className="relative w-[240px] h-[240px] md:w-[450px] md:h-[450px]">
-                  <div className={`absolute inset-0 rounded-full border-[1px] border-accent/30 ${!isMobile ? 'animate-[spin_20s_linear_infinite]' : ''}`} />
+                  <div className="absolute inset-0 rounded-full border-[1px] border-accent/30 animate-[spin_20s_linear_infinite]" />
                   <div className="absolute inset-[-30px] rounded-full border-[1px] border-accent/10 animate-[spin_30s_linear_infinite_reverse] hidden md:block" />
                   <div className="absolute inset-[-60px] rounded-full border-[1px] border-accent/5 animate-[spin_40s_linear_infinite] hidden md:block" />
                   
-                  <div className={`absolute inset-8 rounded-full overflow-hidden border-[1px] border-white/20 ${!isMobile ? 'shadow-[0_0_100px_rgba(0,82,255,0.2)]' : 'shadow-lg'} bg-foreground`}>
+                  <div className={`absolute inset-8 rounded-full overflow-hidden border-[1px] border-white/20 ${isMobile ? 'shadow-2xl' : 'shadow-[0_0_100px_rgba(0,82,255,0.2)]'} bg-foreground`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent)_0%,transparent_70%)] opacity-30" />
                     <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 via-transparent to-blue-500/10" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
@@ -206,17 +197,21 @@ export default function AboutPage() {
               </h2>
 
               {/* 3D Cube - Scaled & Centered with Translation */}
-              <div className="mt-12 md:mt-16 h-64 md:h-80 flex items-center justify-center" style={{ perspective: "1500px" }}>
+              <div className="mt-12 md:mt-16 h-64 md:h-80 flex items-center justify-center pointer-events-none" style={{ perspective: "1500px" }}>
                 <motion.div 
                   style={{ 
-                    rotateX: isMobile ? 0 : cubeRotateX,
-                    rotateY: isMobile ? 0 : cubeRotateY,
-                    y: isMobile ? 0 : cubeY,
                     transformStyle: "preserve-3d",
                     willChange: "transform"
                   }}
-                  animate={isMobile ? { rotateX: 360, rotateY: 360 } : {}}
-                  transition={isMobile ? { duration: 20, repeat: Infinity, ease: "linear" } : {}}
+                  animate={{ 
+                    rotateX: 360,
+                    rotateY: 360
+                  }}
+                  transition={{ 
+                    duration: 35, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
                   className="w-32 h-32 md:w-40 md:h-40 relative"
                 >
                   {[

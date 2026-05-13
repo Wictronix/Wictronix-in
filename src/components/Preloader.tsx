@@ -11,15 +11,15 @@ export default function Preloader() {
     // Disable scrolling while loading
     document.body.style.overflow = "hidden";
 
-    // Start flip after 1.4 seconds
-    const t1 = setTimeout(() => setIsFlipped(true), 1400);
+    // Start flip after 0.5 seconds
+    const t1 = setTimeout(() => setIsFlipped(true), 500);
     
-    // Hide preloader after 3 seconds total
+    // Hide preloader after 1.4 seconds total
     const t2 = setTimeout(() => {
       setIsVisible(false);
       document.body.style.overflow = "unset";
       window.scrollTo(0, 0);
-    }, 3000);
+    }, 1400);
 
     return () => {
       clearTimeout(t1);
@@ -35,7 +35,7 @@ export default function Preloader() {
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4 }}
       className="fixed inset-0 z-[10000] bg-white flex items-center justify-center overflow-hidden"
     >
       <div className="relative w-full max-w-full h-full flex items-center justify-center overflow-hidden">
@@ -49,9 +49,9 @@ export default function Preloader() {
               opacity: 1
             }}
             transition={{ 
-              rotateY: { duration: 1.2, ease: [0.76, 0, 0.24, 1] },
-              scale: { duration: 1.4, ease: "easeOut" },
-              opacity: { duration: 0.6 }
+              rotateY: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
+              scale: { duration: 0.5, ease: "easeOut" },
+              opacity: { duration: 0.4 }
             }}
             style={{ transformStyle: "preserve-3d" }}
             className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center"

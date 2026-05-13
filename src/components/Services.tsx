@@ -65,14 +65,14 @@ const DOCK_GAP = 15;
 function ServiceCard({ service, index, progress }: { service: any, index: number, progress: any }) {
   const [isHovered, setIsHovered] = useState(false);
   
-  // Entry timing logic
-  const start = index * 0.12; 
-  const end = start + 0.2;
+  // Entry timing logic (starts early as section enters viewport)
+  const start = index * 0.25; 
+  const end = start + 0.35;
   
   // 1x3 Single Row Layout - Vertical cards
-  const cardWidth = 250;
-  const cardHeight = 420;
-  const gapX = 16;
+  const cardWidth = 280;
+  const cardHeight = 465;
+  const gapX = 24;
   const col = index;
   const row = 0;
   
@@ -100,7 +100,7 @@ function ServiceCard({ service, index, progress }: { service: any, index: number
           borderColor: isHovered ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
         }}
         transition={{ duration: 0.4, ease: "circOut" }}
-        className="absolute top-1/2 -translate-y-1/2 left-0 w-[250px] h-[420px] rounded-[24px] p-6 shadow-2xl flex flex-col justify-between cursor-pointer border overflow-hidden"
+        className="absolute top-1/2 -translate-y-1/2 left-0 w-[280px] h-[465px] rounded-[32px] p-8 shadow-2xl flex flex-col justify-between cursor-pointer border overflow-hidden"
       >
         <div className="relative z-10 flex flex-col h-full">
           {/* Header: Title, Tagline & Icon/Index */}
@@ -162,17 +162,18 @@ export default function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"],
+    offset: ["start 0.8", "end end"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 25,
-    restDelta: 0.001
+    stiffness: 80,
+    damping: 30,
+    restDelta: 0.01,
+    restSpeed: 0.01
   });
 
   return (
-    <section ref={containerRef} id="services" className="relative min-h-[150vh] lg:min-h-[250vh] bg-white py-20 lg:py-0">
+    <section ref={containerRef} id="services" className="relative min-h-[150vh] lg:min-h-[200vh] bg-white py-20 lg:py-0">
       <div className="lg:sticky lg:top-0 lg:h-screen flex items-center lg:overflow-hidden">
         <div className="container mx-auto px-6 md:px-12 py-10 lg:py-0">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-start lg:items-center">
@@ -204,7 +205,7 @@ export default function Services() {
             </div>
 
             {/* Right: Sequential Stacking Area (1x3 Row) */}
-            <div className="relative h-[500px] w-[784px] hidden lg:flex items-center">
+            <div className="relative h-[550px] w-[888px] hidden lg:flex items-center">
               <div className="relative w-full h-full">
                 {services.map((service, i) => (
                   <ServiceCard 
@@ -225,9 +226,20 @@ export default function Services() {
                     <service.icon size={20} />
                   </div>
                   <h3 className="text-xl font-display font-bold tracking-tight mb-1">{service.title}</h3>
-                  <p className="text-white/60 text-[13px] leading-relaxed mb-5">{service.description}</p>
+                  <p className="text-white/60 text-[13px] leading-relaxed mb-6">{service.description}</p>
+                  
+                  {/* Service Items List */}
+                  <div className="grid grid-cols-1 gap-2 mb-8 border-t border-white/5 pt-6">
+                    {service.items.map((item: string) => (
+                      <div key={item} className="flex items-center space-x-2">
+                        <div className="w-1 h-1 bg-accent/60 rounded-full" />
+                        <span className="text-[11px] font-bold tracking-tight text-white/80">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
                   <Link href="/services" className="text-accent font-bold text-xs tracking-widest inline-flex items-center">
-                    Learn More <ArrowRight size={14} className="ml-2" />
+                    Explore Engine <ArrowRight size={14} className="ml-2" />
                   </Link>
                 </div>
               ))}

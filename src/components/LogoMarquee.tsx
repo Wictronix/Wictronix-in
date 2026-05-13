@@ -7,12 +7,7 @@ import Image from "next/image";
 
 const logos = [
   { name: "DQ Care", path: "/images/logos/DQcare.webp" },
-  { name: "Broad", path: "/images/logos/broad.webp" },
   { name: "Bell", path: "/images/logos/bell.webp", invert: true },
-  { name: "Moveazy", path: "/images/logos/moveazy.webp" },
-  { name: "PPS", path: "/images/logos/pps.webp" },
-  { name: "Success Techno", path: "/images/logos/successtechno.webp" },
-  { name: "Zetquant", path: "/images/logos/zetquant.webp" },
   { name: "CTC", path: "/images/logos/CTC.webp" },
   { name: "Logo White", path: "/images/logos/logo_white.avif", invert: true },
 ];
