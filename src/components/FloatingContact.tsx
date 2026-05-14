@@ -1,14 +1,47 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, Calendar, X } from "lucide-react";
-import { useState } from "react";
+import { CalendarCheck, Calendar, X } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function FloatingContact() {
   const [showChatPopup, setShowChatPopup] = useState(false);
+  const [showNudge, setShowNudge] = useState(false);
+
+  useEffect(() => {
+    // Show nudge after 1.5 seconds
+    const showTimer = setTimeout(() => {
+      setShowNudge(true);
+    }, 1500);
+
+    // Hide nudge after total 6.5 seconds (1.5 + 5)
+    const hideTimer = setTimeout(() => {
+      setShowNudge(false);
+    }, 6500);
+
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
+  }, []);
 
   return (
     <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[9999] flex flex-col items-end space-y-4">
+      {/* Nudge Modal */}
+      <AnimatePresence>
+        {showNudge && !showChatPopup && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.8, x: 10 }}
+            animate={{ opacity: 1, y: 0, scale: 1, x: 0 }}
+            exit={{ opacity: 0, y: 10, scale: 0.8, x: 10 }}
+            className="bg-accent text-white px-4 py-2.5 rounded-2xl text-[11px] font-bold shadow-[0_10px_30px_rgba(0,82,255,0.3)] mb-2 relative whitespace-nowrap"
+          >
+            Schedule Appointment
+            <div className="absolute -bottom-1.5 right-6 w-3 h-3 bg-accent rotate-45 rounded-sm" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Chatbot Popup */}
       <AnimatePresence>
         {showChatPopup && (
@@ -26,9 +59,9 @@ export default function FloatingContact() {
             </button>
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
-                <Bot size={20} className="text-white" />
+                <CalendarCheck size={20} className="text-white" />
               </div>
-              <span className="font-bold text-sm tracking-tight">WictroniX Assistant</span>
+              <span className="font-bold text-sm tracking-tight">Booking & Consultation</span>
             </div>
             <p className="text-sm font-medium leading-relaxed mb-6">
               Need assistance? <br />
@@ -75,18 +108,10 @@ export default function FloatingContact() {
           whileTap={{ scale: 0.9 }}
           suppressHydrationWarning
           className="w-14 h-14 bg-black rounded-full flex items-center justify-center shadow-xl shadow-black/20 transition-all border border-white/10 group relative"
-          title="Get Assistance"
+          title="Book Appointment"
         >
-          {!showChatPopup && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="absolute -top-2 -left-2 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-lg"
-            >
-              1
-            </motion.div>
-          )}
-          <Bot 
+
+          <CalendarCheck 
             className={`w-8 h-8 transition-all duration-300 ${showChatPopup ? 'text-accent' : 'text-white'}`} 
           />
         </motion.button>
