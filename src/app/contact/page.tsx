@@ -69,24 +69,19 @@ export default function ContactPage() {
     setStatus("submitting");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("https://formspree.io/f/mlgzedqw", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({
-          access_key: "62688b77-3e19-4d6d-88f5-442b08a6b185", // Provided Access Key
-          ...formData,
-          from_name: "WictroniX Contact Form",
-          subject: `New Project Inquiry from ${formData.name}`,
-        }),
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
       console.log("Form Submission Result:", result);
       
-      if (result.success) {
+      if (response.ok) {
         setStatus("success");
         setFormData({
           name: "",
@@ -99,7 +94,7 @@ export default function ContactPage() {
           source: ""
         });
       } else {
-        console.error("Submission failed:", result.message || "Unknown error");
+        console.error("Submission failed:", result.errors ? result.errors.map((err: any) => err.message).join(", ") : "Unknown error");
         setStatus("error");
       }
     } catch (error) {
