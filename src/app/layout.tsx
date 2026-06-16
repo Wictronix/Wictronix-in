@@ -14,8 +14,35 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "WictroniX | The Execution Layer Between Your Ideas and Growth",
-  description: "A cross-functional team operating inside your growth objectives with founder-level accountability and agency-level speed.",
+  metadataBase: new URL('https://www.wictronix.in'),
+  title: {
+    default: "WictroniX | Website Development Company India & B2B Marketing",
+    template: "%s | WictroniX",
+  },
+  description: "WictroniX is an execution-first agency offering B2B Marketing, Website Development, and SEO/GEO in India. We bridge the gap between ideas and growth.",
+  keywords: ["Website Development Company India", "Cross-Functional Growth for Business", "B2B Marketing", "Content Marketing Company India", "SEO GEO Company India"],
+  openGraph: {
+    title: "WictroniX | Website Development Company India & B2B Marketing",
+    description: "WictroniX is an execution-first agency offering B2B Marketing, Website Development, and SEO/GEO in India.",
+    url: 'https://www.wictronix.in',
+    siteName: 'WictroniX',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'WictroniX Logo',
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "WictroniX | Website Development Company India",
+    description: "WictroniX is an execution-first agency offering B2B Marketing, Website Development, and SEO/GEO in India.",
+    images: ['/logo.png'],
+  },
 };
 
 export default function RootLayout({

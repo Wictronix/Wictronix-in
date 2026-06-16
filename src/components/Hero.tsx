@@ -71,9 +71,10 @@ export default function Hero() {
         >
           we build
         </motion.p>
+        <h1 className="sr-only">WictroniX: Website Development Company India & B2B Cross-Functional Growth Agency</h1>
         <div className="h-12 md:h-20 flex items-center justify-center">
           <AnimatePresence mode="wait">
-            <motion.h1
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 20, rotateX: -90 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -82,17 +83,19 @@ export default function Hero() {
               className="text-[2.75rem] sm:text-5xl md:text-8xl font-display font-bold tracking-tighter text-foreground"
             >
               {words[index]}<span className="text-accent">.</span>
-            </motion.h1>
+            </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
       {/* Main Image Container - Positioned Downward */}
       <div className="relative w-[94%] flex-1 md:h-auto md:aspect-video rounded-t-[30px] md:rounded-t-[60px] overflow-hidden z-10 shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.1)] border-x border-t border-border/50">
-        <img
-          src="/images/premium_tech_bg.png?v=1.1"
+        <Image
+          src="/images/premium_tech_bg.png"
           alt="Premium Tech Background"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          fill
+          priority
+          className="object-cover object-center"
         />
         {/* Black Overlay */}
         <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] md:backdrop-blur-[1px] hidden md:block" />
