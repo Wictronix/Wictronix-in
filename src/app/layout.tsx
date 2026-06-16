@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -58,6 +59,16 @@ export default function RootLayout({
         <CustomScrollbar />
         <SmoothScroll>{children}</SmoothScroll>
         <FloatingContact />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-3ET59VR4C1" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-3ET59VR4C1');
+          `}
+        </Script>
       </body>
     </html>
   );
